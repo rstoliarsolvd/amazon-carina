@@ -3,9 +3,6 @@ package com.solvd.carina.amazon;
 
 import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.core.gui.AbstractPage;
-import com.solvd.carina.amazon.services.CheckMethods;
-import com.solvd.carina.demo.gui.pages.HomePage;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
