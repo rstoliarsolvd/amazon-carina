@@ -2,15 +2,16 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 
 
-<suite name="All Test Suite">
-    <test verbose="2" preserve-order="true" name="/Users/rstoliar/IdeaProjects/SeptemberTasks/src/main/java/amazon">
-<!--    <test name="/Users/rstoliar/IdeaProjects/SeptemberTasks/src/main/java/amazon">-->
+<suite name="Simple Test" parallel="methods" thread-count="5">
+    <test verbose="2" preserve-order="true" name="OneTestRun">
 
         <classes>
-            <class name="AmazonTest">
-<!--                <methods>-->
-<!--                    <include name="verifyTodayDealsOption"/>-->
-<!--                </methods>-->
+            <class name="com.solvd.carina.amazon.AmazonTest">
+<!--                Below variant to run just the mentioned tests-->
+                <methods>
+<!--                    <include name="verifySearchFieldAndHomeBtn"/>-->
+                    <include name="verifyTodayDealsOption"/>
+                </methods>
             </class>
         </classes>
     </test>

@@ -1,12 +1,16 @@
-package com.solvd.carina.amazon.pages;
+package com.solvd.carina.amazon.mobile.androidpages;
 
+import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.core.gui.AbstractPage;
+import com.solvd.carina.amazon.mobile.base.FilterMenuPageBase;
+import com.solvd.carina.amazon.mobile.base.FilterResultPageBase;
+import com.solvd.carina.amazon.mobile.base.HomePageBase;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 
-public class FilterMenuPage extends AbstractPage {
+@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = FilterMenuPageBase.class)
+public class FilterMenuPage extends FilterMenuPageBase {
 
     private static final Logger LOGGER = Logger.getLogger(FilterMenuPage.class);
 
@@ -33,26 +37,29 @@ public class FilterMenuPage extends AbstractPage {
         super(driver);
     }
 
-    public FilterMenuPage clickSmartHomeBtn() {
+    @Override
+    public FilterMenuPageBase clickSmartHomeBtn() {
         assertElementPresent(smartHomeBtn);
         smartHomeBtn.click();
         waitForJSToLoad();
-        return new FilterMenuPage((RemoteWebDriver) driver);
+        return initPage(driver, FilterMenuPageBase.class);
     }
 
-    public FilterResultPage clickPetBtn() {
+    @Override
+    public FilterResultPageBase clickPetBtn() {
         assertElementPresent(petBtn);
         petBtn.click();
         waitForJSToLoad();
-        return new FilterResultPage((RemoteWebDriver) driver);
-
+        return initPage(driver, FilterResultPage.class);
     }
 
+    @Override
     public boolean isFMPageOpen() {
         waitForJSToLoad();
         return closeFilterMenuBtn.isElementPresent() || filterBlock.isElementPresent();
     }
 
+    @Override
     public boolean isSmartTitlePresent() {
         waitForJSToLoad();
         boolean isSmartHomeTitleDisplayed = smartHomeTitle.isElementPresent();
@@ -60,15 +67,17 @@ public class FilterMenuPage extends AbstractPage {
         return isSmartHomeTitleDisplayed;
     }
 
-    public HomePage clickCloseBtn() {
+    @Override
+    public HomePageBase clickCloseBtn() {
         waitForJSToLoad();
         closeFilterMenuBtn.click();
         boolean isCloseFilterMenuBtnDisplayed = closeFilterMenuBtn.isElementPresent();
         waitForJSToLoad();
         LOGGER.info("closeFilterMenuBtn disappeared after clicking on it - " + !isCloseFilterMenuBtnDisplayed);
-        return new HomePage((RemoteWebDriver) driver);
+        return initPage(driver, HomePage.class);
     }
 
+    @Override
     public ExtendedWebElement getCloseFilterMenuBtn() {
         return closeFilterMenuBtn;
     }

@@ -1,7 +1,7 @@
 package com.solvd.carina.amazon.services;
 
-import com.solvd.carina.amazon.pages.HomePage;
-import com.solvd.carina.amazon.pages.UpTab;
+import com.solvd.carina.amazon.webpages.HomePage;
+import com.solvd.carina.amazon.webpages.UpTab;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class NavigationService {

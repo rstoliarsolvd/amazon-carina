@@ -1,15 +1,19 @@
-package com.solvd.carina.amazon.pages;
+package com.solvd.carina.amazon.webpages;
 
 import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
-import org.apache.log4j.Logger;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.lang.invoke.MethodHandles;
 
 
 public class HomePage extends AbstractPage {
-    private static final Logger LOGGER = Logger.getLogger(HomePage.class);
+
+private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     @FindBy(xpath = "//div[@id='desktop-banner-stripe']")
     private ExtendedWebElement desktopBannerStripe;

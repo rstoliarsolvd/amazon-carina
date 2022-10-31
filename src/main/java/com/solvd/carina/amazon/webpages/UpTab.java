@@ -1,15 +1,18 @@
-package com.solvd.carina.amazon.pages;
+package com.solvd.carina.amazon.webpages;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
-import org.apache.log4j.Logger;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.lang.invoke.MethodHandles;
 
 public class UpTab extends AbstractPage {
 
-    private static final Logger LOGGER = Logger.getLogger(HomePage.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     @FindBy(id = "nav-link-accountList-nav-line-1")
     private ExtendedWebElement signInBtn;
@@ -51,8 +54,9 @@ public class UpTab extends AbstractPage {
      * @return
      */
 //    public ResultsPage inputTextInSearchField(String searchItem) {
-//        searchBtn.click();
-//        return new ResultsPage((RemoteWebDriver) driver);
+//       searchField.sendKeys(Keys.valueOf(searchItem));
+//       searchBtn.click();
+//       return new ResultsPage((RemoteWebDriver) driver);
 //    }
 
     public ResultsPage findItem(String searchItem) {

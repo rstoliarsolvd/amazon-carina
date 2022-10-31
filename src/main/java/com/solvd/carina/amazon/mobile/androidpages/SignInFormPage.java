@@ -1,12 +1,14 @@
-package com.solvd.carina.amazon.pages;
+package com.solvd.carina.amazon.mobile.androidpages;
 
+import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.core.gui.AbstractPage;
+import com.solvd.carina.amazon.mobile.base.SignInFormPageBase;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 
-public class SignInFormPage extends AbstractPage {
+@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = SignInFormPageBase.class)
+public class SignInFormPage extends SignInFormPageBase {
 
     private static final Logger LOGGER = Logger.getLogger(SignInFormPage.class);
 
@@ -25,6 +27,7 @@ public class SignInFormPage extends AbstractPage {
         super(driver);
     }
 
+    @Override
     public boolean isHeaderSignIn() {
         String headerText = header.getText();
         boolean isHeaderGood = headerText.equals(titleName);
@@ -32,6 +35,7 @@ public class SignInFormPage extends AbstractPage {
         return isHeaderGood;
     }
 
+    @Override
     public void clickHomeBtn() {
         if (homeBtn.isPresent()) {
             homeBtn.click();
@@ -41,6 +45,5 @@ public class SignInFormPage extends AbstractPage {
         HomePage homePage = new HomePage((RemoteWebDriver) driver);
         waitForJSToLoad();
         LOGGER.info("click Home-Btn. And HomePage is open - " + homePage.isHomePageOpen());
-
     }
 }

@@ -5,7 +5,6 @@
 
     <!--        variant to start tests in different threads-->
     <suite name="Parallel-test-method Suite" parallel="tests" thread-count="3">
-        <!--    <test verbose="2" preserve-order="true" name="/Users/rstoliar/IdeaProjects/SeptemberTasks/src/main/java/amazon">-->
 
     <test name="Test-method test Chrome">
         <parameter name="browser" value="chrome"></parameter>
