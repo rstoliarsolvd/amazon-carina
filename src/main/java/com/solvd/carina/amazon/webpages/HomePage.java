@@ -3,6 +3,7 @@ package com.solvd.carina.amazon.webpages;
 import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
@@ -24,7 +25,7 @@ private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.looku
     @FindBy(xpath = "//*[@id='nav-main']")
     ExtendedWebElement goodDesignLocator;
 
-    public HomePage(RemoteWebDriver driver) {
+    public HomePage(WebDriver driver) {
         super(driver);
     }
 

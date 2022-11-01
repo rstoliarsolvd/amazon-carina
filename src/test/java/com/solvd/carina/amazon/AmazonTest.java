@@ -9,6 +9,7 @@ import com.solvd.carina.amazon.utils.RetryTestRunAttempts;
 import com.solvd.carina.amazon.webpages.*;
 import com.zebrunner.agent.core.annotation.TestLabel;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
@@ -108,15 +109,16 @@ public class AmazonTest extends AbstractTest {
     public void verifyTodayDealsOption() throws Exception {
 
         //Driver initialisation (default)
-        String browser = Configuration.get(Configuration.Parameter.BROWSER);
-        AbstractTest.setupDriver(browser);
+//        String browser = Configuration.get(Configuration.Parameter.BROWSER);
+//        AbstractTest.setupDriver(browser);
+        WebDriver driver = getDriver();
 
         //Output info about thread number and browser name
         LOGGER.info("verifyTodayDealsOption Thread.currentThread().getId() = " + Thread.currentThread().getId());
         LOGGER.info("This test is running on browser - " + driverT.get().getCapabilities().getBrowserName());
 
         //get driver and verify good page design. If not - then refresh
-        RemoteWebDriver driver = driverT.get();
+//        RemoteWebDriver driver = driverT.get();
         HomePage homePage = new HomePage(driver);
         //        HomePageBase homePage = initPage(driver, HomePageBase.class);  //for mobil
         refreshPageIfWrongDesign(driver, homePage.isGoodDesire());

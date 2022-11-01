@@ -1,6 +1,7 @@
 package com.solvd.carina.amazon;
 
 
+import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.Configuration;
 import com.solvd.carina.amazon.constants.Const;
 import io.appium.java_client.android.AndroidDriver;
@@ -27,7 +28,7 @@ import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 
-public class AbstractTest {
+public class AbstractTest implements IAbstractTest {
 
     /**
      * For Selenium Standalone server //for parallel ran (multiThread)

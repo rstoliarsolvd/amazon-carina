@@ -2,6 +2,7 @@ package com.solvd.carina.amazon;
 
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.Configuration;
+import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.core.foundation.utils.tag.Priority;
 import com.qaprosoft.carina.core.foundation.utils.tag.TestPriority;
@@ -28,10 +29,12 @@ public class SimpleTest extends AbstractTest implements IAbstractTest{
         public void simpleTestMessage() throws Exception {
 
             //Driver initialisation (default)
-            String browser = Configuration.getBrowser();
-            AbstractTest.setupDriver(browser);
+//            String browser = Configuration.getBrowser();
+//            AbstractTest.setupDriver(browser);
 
             //output the OK-message
-            LOGGER.info("This is simple test to check if build!");
+//            LOGGER.info("This is simple test to check if build!");
+            R.CONFIG.put("capabilities.browserName", "firefox", true);
+            getDriver();
         }
 }
