@@ -5,6 +5,7 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.solvd.carina.amazon.mobile.base.ResultsPageBase;
 import com.solvd.carina.amazon.services.CheckMethods;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -19,7 +20,7 @@ public class ResultsPage extends ResultsPageBase {
     @FindBy(xpath = "//*[contains(@class, 's-main-slot')]//*[contains(@class, 's-title-instructions-style')]")
     private List<ExtendedWebElement> goodsResult;
 
-    public ResultsPage(RemoteWebDriver driver) {
+    public ResultsPage(WebDriver driver) {
         super(driver);
     }
 

@@ -4,6 +4,7 @@ import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.solvd.carina.amazon.mobile.base.MenuTabBase;
 import com.solvd.carina.amazon.mobile.base.TodaysDealPageBase;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -17,9 +18,8 @@ public class MenuTab extends MenuTabBase {
     @FindBy(xpath = "//*[@class='hm-icon nav-sprite']")
     private ExtendedWebElement filterMenuBtn;
 
-    public MenuTab(RemoteWebDriver driver) {
+    public MenuTab(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
     }
 
     @Override

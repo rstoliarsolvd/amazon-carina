@@ -6,6 +6,7 @@ import com.solvd.carina.amazon.mobile.base.TodaysDealPageBase;
 import com.solvd.carina.amazon.services.CheckMethods;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -29,7 +30,7 @@ public class TodaysDealPage extends TodaysDealPageBase {
     @FindBy(xpath = "//div[@aria-label='Watch now']")
     private ExtendedWebElement watchNow;
 
-    public TodaysDealPage(RemoteWebDriver driver) {
+    public TodaysDealPage(WebDriver driver) {
         super(driver);
     }
 

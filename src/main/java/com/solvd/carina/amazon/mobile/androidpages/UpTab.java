@@ -8,6 +8,7 @@ import com.solvd.carina.amazon.mobile.base.SignInFormPageBase;
 import com.solvd.carina.amazon.mobile.base.UpTabBase;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -31,7 +32,7 @@ public class UpTab extends UpTabBase {
     @FindBy(xpath = "//input[@id='nav-search-submit-button']")
     private ExtendedWebElement searchBtn;
 
-    public UpTab(RemoteWebDriver driver) {
+    public UpTab(WebDriver driver) {
         super(driver);
     }
 

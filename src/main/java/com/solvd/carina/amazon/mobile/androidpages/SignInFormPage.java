@@ -4,6 +4,7 @@ import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.solvd.carina.amazon.mobile.base.SignInFormPageBase;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -23,7 +24,7 @@ public class SignInFormPage extends SignInFormPageBase {
 
     private String titleName = "Sign in";
 
-    public SignInFormPage(RemoteWebDriver driver) {
+    public SignInFormPage(WebDriver driver) {
         super(driver);
     }
 

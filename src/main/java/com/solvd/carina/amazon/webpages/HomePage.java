@@ -25,7 +25,7 @@ private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.looku
     @FindBy(xpath = "//*[@id='nav-main']")
     ExtendedWebElement goodDesignLocator;
 
-    public HomePage(WebDriver driver) {
+    public HomePage(RemoteWebDriver driver) {
         super(driver);
     }
 

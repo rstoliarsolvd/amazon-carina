@@ -7,6 +7,7 @@ import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.core.foundation.utils.tag.Priority;
 import com.qaprosoft.carina.core.foundation.utils.tag.TestPriority;
 import com.zebrunner.agent.core.annotation.TestLabel;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
@@ -33,8 +34,8 @@ public class SimpleTest extends AbstractTest implements IAbstractTest{
 //            AbstractTest.setupDriver(browser);
 
             //output the OK-message
-//            LOGGER.info("This is simple test to check if build!");
-            R.CONFIG.put("capabilities.browserName", "firefox", true);
+            LOGGER.info("!!!!!!!! This is simple test to check if build!!!!!!!!!!");
+//            R.CONFIG.put("capabilities.browserName", "firefox", true);
             getDriver();
         }
 }

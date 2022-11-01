@@ -6,7 +6,8 @@
     <test verbose="2" preserve-order="true" name="OneTestRun">
 
         <classes>
-            <class name="com.solvd.carina.amazon.AmazonTest">
+            <class name="com.solvd.carina.amazon.AmazonMobilTest">
+<!--            <class name="com.solvd.carina.amazon.AmazonWebTest">-->
 <!--                Below variant to run just the mentioned tests-->
                 <methods>
 <!--                    <include name="verifySearchFieldAndHomeBtn"/>-->

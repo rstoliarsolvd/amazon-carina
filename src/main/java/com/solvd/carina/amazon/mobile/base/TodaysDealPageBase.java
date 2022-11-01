@@ -1,13 +1,14 @@
 package com.solvd.carina.amazon.mobile.base;
 
 import com.qaprosoft.carina.core.gui.AbstractPage;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.util.List;
 
 public abstract class TodaysDealPageBase extends AbstractPage {
 
-    public TodaysDealPageBase(RemoteWebDriver driver) {
+    public TodaysDealPageBase(WebDriver driver) {
         super(driver);
     }
 

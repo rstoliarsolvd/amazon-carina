@@ -1,11 +1,12 @@
 package com.solvd.carina.amazon.mobile.base;
 
 import com.qaprosoft.carina.core.gui.AbstractPage;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 public abstract class LocationAlertBase extends AbstractPage {
 
-    public LocationAlertBase(RemoteWebDriver driver) {
+    public LocationAlertBase(WebDriver driver) {
         super(driver);
     }
 

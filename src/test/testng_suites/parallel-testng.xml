@@ -9,21 +9,21 @@
     <test name="Test-method test Chrome">
         <parameter name="browser" value="chrome"></parameter>
         <classes>
-            <class name="com.solvd.carina.amazon.AmazonTest"/>
+            <class name="com.solvd.carina.amazon.AmazonWebTest"/>
         </classes>
     </test>
 
     <test name="Test-method test FireFox">
         <parameter name="browser" value="firefox"></parameter>
         <classes>
-            <class name="com.solvd.carina.amazon.AmazonTest"/>
+            <class name="com.solvd.carina.amazon.AmazonWebTest"/>
         </classes>
     </test>
 
     <test name="Test-method test Safari">
         <parameter name="browser" value="safari"></parameter>
         <classes>
-            <class name="com.solvd.carina.amazon.AmazonTest"/>
+            <class name="com.solvd.carina.amazon.AmazonWebTest"/>
         </classes>
     </test>
 

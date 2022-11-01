@@ -4,6 +4,7 @@ import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.solvd.carina.amazon.mobile.base.LocationAlertBase;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -20,7 +21,7 @@ public class LocationAlert extends LocationAlertBase {
     @FindBy(css = ".a-section.glow-toaster.glow-toaster-theme-default.glow-toaster-slot-default.nav-coreFlyout.nav-flyout")
     private ExtendedWebElement locationPopUp;
 
-    public LocationAlert(RemoteWebDriver driver) {
+    public LocationAlert(WebDriver driver) {
         super(driver);
     }
 

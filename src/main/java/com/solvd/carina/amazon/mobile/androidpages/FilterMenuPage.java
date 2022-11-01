@@ -6,6 +6,7 @@ import com.solvd.carina.amazon.mobile.base.FilterMenuPageBase;
 import com.solvd.carina.amazon.mobile.base.FilterResultPageBase;
 import com.solvd.carina.amazon.mobile.base.HomePageBase;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -33,7 +34,7 @@ public class FilterMenuPage extends FilterMenuPageBase {
     @FindBy(xpath = "//*[text()='Smart Pet | Smart Home']")
     private ExtendedWebElement titleSmartPet;
 
-    public FilterMenuPage(RemoteWebDriver driver) {
+    public FilterMenuPage(WebDriver driver) {
         super(driver);
     }
 

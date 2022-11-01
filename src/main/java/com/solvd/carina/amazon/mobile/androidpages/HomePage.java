@@ -6,6 +6,7 @@ import com.solvd.carina.amazon.mobile.base.FilterMenuPageBase;
 import com.solvd.carina.amazon.mobile.base.HomePageBase;
 import com.solvd.carina.amazon.constants.Const;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -19,7 +20,10 @@ public class HomePage extends HomePageBase {
     @FindBy(xpath = "//div[@id='gw-card-layout']")
     private ExtendedWebElement desktopCardLayout;
 
-    public HomePage(RemoteWebDriver driver) {
+    @FindBy(xpath = "//*[@id='nav-main']")
+    ExtendedWebElement goodDesignLocator;
+
+    public HomePage(WebDriver driver) {
         super(driver);
     }
 
@@ -38,4 +42,10 @@ public class HomePage extends HomePageBase {
     public ExtendedWebElement getHomePageWebElement() {
         return desktopCardLayout;
     }
+
+    @Override
+    public boolean isGoodDesire(){
+        return goodDesignLocator.isElementPresent(5);
+    }
+
 }

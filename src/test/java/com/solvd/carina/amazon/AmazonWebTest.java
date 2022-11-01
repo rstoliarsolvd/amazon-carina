@@ -1,22 +1,26 @@
 package com.solvd.carina.amazon;
 
 import com.qaprosoft.carina.core.foundation.utils.Configuration;
+import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.core.foundation.utils.tag.Priority;
 import com.qaprosoft.carina.core.foundation.utils.tag.TestPriority;
 import com.solvd.carina.amazon.services.NavigationService;
+import com.solvd.carina.amazon.services.NavigationServiceWeb;
 import com.solvd.carina.amazon.utils.RetryTestRunAttempts;
 import com.solvd.carina.amazon.webpages.*;
 import com.zebrunner.agent.core.annotation.TestLabel;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.HasCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class AmazonTest extends AbstractTest {
-    private static final Logger LOGGER = Logger.getLogger(AmazonTest.class);
+public class AmazonWebTest extends AbstractWebTest{
+
+        private static final Logger LOGGER = Logger.getLogger(com.solvd.carina.amazon.AmazonWebTest.class);
 
 
     @DataProvider(name = "browser")
@@ -35,7 +39,7 @@ public class AmazonTest extends AbstractTest {
     public void verifySignInFormAppearedTest(String browser) throws Exception {
 
         //Driver initialisation (all from dataProvider)
-        AbstractTest.setupDriver(browser);
+        AbstractWebTest.setupDriver(browser);
 
         //Output info about thread number and browser name
         LOGGER.info("verifySignInFormAppearedTest Thread.currentThread().getId() = " + Thread.currentThread().getId());
@@ -75,7 +79,7 @@ public class AmazonTest extends AbstractTest {
 
         //Driver initialisation (default)
         String browser = Configuration.getBrowser();
-        AbstractTest.setupDriver(browser);
+        AbstractWebTest.setupDriver(browser);
 
         //Output info about thread number and browser name
         LOGGER.info("verifySearchFieldAndHomeBtn Thread.currentThread().getId() = " + Thread.currentThread().getId());
@@ -94,7 +98,7 @@ public class AmazonTest extends AbstractTest {
         Assert.assertTrue(resultsPage.areTitlesContainsItem(searchItem), "Not all goods titles contains searched items");
 
         //back to home page and verify that home page is open
-        homePage = NavigationService.goHome(driver);
+        homePage = NavigationServiceWeb.goHome(driver);
         Assert.assertTrue(homePage.isHomePageOpen(), "Home page is not opened");
     }
 
@@ -109,16 +113,15 @@ public class AmazonTest extends AbstractTest {
     public void verifyTodayDealsOption() throws Exception {
 
         //Driver initialisation (default)
-//        String browser = Configuration.get(Configuration.Parameter.BROWSER);
-//        AbstractTest.setupDriver(browser);
-        WebDriver driver = getDriver();
+        String browser = Configuration.get(Configuration.Parameter.BROWSER);
+        AbstractWebTest.setupDriver(browser);
 
         //Output info about thread number and browser name
         LOGGER.info("verifyTodayDealsOption Thread.currentThread().getId() = " + Thread.currentThread().getId());
         LOGGER.info("This test is running on browser - " + driverT.get().getCapabilities().getBrowserName());
 
         //get driver and verify good page design. If not - then refresh
-//        RemoteWebDriver driver = driverT.get();
+        RemoteWebDriver driver = driverT.get();
         HomePage homePage = new HomePage(driver);
         //        HomePageBase homePage = initPage(driver, HomePageBase.class);  //for mobil
         refreshPageIfWrongDesign(driver, homePage.isGoodDesire());
@@ -138,8 +141,7 @@ public class AmazonTest extends AbstractTest {
         Assert.assertTrue(todaysDealPage.areGoodsHaveDiscount(), "Not All goods have discounts");
 
         //back to home page
-        NavigationService.goHome(driver);
-
+        NavigationServiceWeb.goHome(driver);
     }
 
     //    @TestRailCases(testCasesId = "114", suiteId = "N1")
@@ -154,7 +156,7 @@ public class AmazonTest extends AbstractTest {
     public void verifyFilterTest(String browser) throws Exception {
 
         //Driver initialisation (all from dataProvider)
-        AbstractTest.setupDriver(browser);
+        AbstractWebTest.setupDriver(browser);
 
         //Output info about thread number and browser name
         LOGGER.info("verifyFilterTest Thread.currentThread().getId() = " + Thread.currentThread().getId());
@@ -184,7 +186,7 @@ public class AmazonTest extends AbstractTest {
         Assert.assertTrue(filterResultPage.areAllGoodsTitleContainsSearchItem(pet), "No 'Pet' in title on filter result page present");
 
         //back to home page
-        NavigationService.goHome(driver);
+        NavigationServiceWeb.goHome(driver);
     }
 
     //    @TestRailCases(testCasesId = "115", suiteId = "N1")
@@ -198,7 +200,7 @@ public class AmazonTest extends AbstractTest {
     public void verifyFilterMenuCloseBtn(String browser) throws Exception {
 
         //Driver initialisation (all from dataProvider)
-        AbstractTest.setupDriver(browser);
+        AbstractWebTest.setupDriver(browser);
 
         //Output info about thread number and browser name
         LOGGER.info("verifyFilterMenuCloseBtn Thread.currentThread().getId() = " + Thread.currentThread().getId());
@@ -220,5 +222,4 @@ public class AmazonTest extends AbstractTest {
         homePage = filterMenuPage.clickCloseBtn();
         Assert.assertTrue(homePage.isHomePageOpen(), "Home page is not open");
     }
-
 }

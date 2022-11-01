@@ -5,6 +5,7 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.solvd.carina.amazon.mobile.base.FilterResultPageBase;
 import com.solvd.carina.amazon.services.CheckMethods;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -22,7 +23,7 @@ public class FilterResultPage extends FilterResultPageBase {
     @FindBy(xpath = "//span[@class='a-truncate-cut']")
     private List<ExtendedWebElement> goodsOfFilter;
 
-    public FilterResultPage(RemoteWebDriver driver) {
+    public FilterResultPage(WebDriver driver) {
         super(driver);
     }
 

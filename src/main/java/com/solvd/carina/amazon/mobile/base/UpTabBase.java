@@ -1,11 +1,12 @@
 package com.solvd.carina.amazon.mobile.base;
 
 import com.qaprosoft.carina.core.gui.AbstractPage;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 public abstract class UpTabBase extends AbstractPage {
 
-    public UpTabBase(RemoteWebDriver driver) {
+    public UpTabBase(WebDriver driver) {
         super(driver);
     }
 
