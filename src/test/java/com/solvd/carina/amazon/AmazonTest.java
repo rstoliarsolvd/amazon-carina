@@ -43,10 +43,14 @@ public class AmazonTest extends AbstractTest {
         //get driver and verify good page design. If not - then refresh
         RemoteWebDriver driver = driverT.get();
         HomePage homePage = new HomePage(driver);
+//        HomePageBase homePage = initPage(driver, HomePageBase.class);  //for mobil
+
         refreshPageIfWrongDesign(driver, homePage.isGoodDesire());
 
         //press on signIn btn and verify signIn page is open
         UpTab upTab = new UpTab(driver);
+//        UpTabBase upTab = initPage(driver, UpTabBase.class);    //for mobil
+
         SignInFormPage signInFormPage = upTab.clickSignInBtn();
         Assert.assertTrue(signInFormPage.isHeaderSignIn(), "Header on opened page is not 'Sign in'");
 
@@ -79,10 +83,12 @@ public class AmazonTest extends AbstractTest {
         //get driver and verify good page design. If not - then refresh
         RemoteWebDriver driver = driverT.get();
         HomePage homePage = new HomePage(driver);
+        //        HomePageBase homePage = initPage(driver, HomePageBase.class);  //for mobil
         refreshPageIfWrongDesign(driver, homePage.isGoodDesire());
 
         //Input searched good and verify result for it
         UpTab upTab = new UpTab(driver);
+        //        UpTabBase upTab = initPage(driver, UpTabBase.class);    //for mobil
         ResultsPage resultsPage = upTab.findItem(searchItem);
         Assert.assertTrue(resultsPage.areTitlesContainsItem(searchItem), "Not all goods titles contains searched items");
 
@@ -112,14 +118,19 @@ public class AmazonTest extends AbstractTest {
         //get driver and verify good page design. If not - then refresh
         RemoteWebDriver driver = driverT.get();
         HomePage homePage = new HomePage(driver);
+        //        HomePageBase homePage = initPage(driver, HomePageBase.class);  //for mobil
         refreshPageIfWrongDesign(driver, homePage.isGoodDesire());
 
         //Verify LocationAlert. If it is presented, then close it.
         LocationAlert lAlert = new LocationAlert(driver);
+        //        LocationAlertBase lAlert = initPage(driver, LocationAlertBase.class);  //for mobil
+
         lAlert.verifyAlert();
 
         //Press TodaysDeals and verify all goods have discounts on opened page
         MenuTab menuTab = new MenuTab(driver);
+        //        MenuTabBase menuTab = initPage(driver, MenuTabBase.class);  //for mobil
+
         TodaysDealPage todaysDealPage = menuTab.clickTodaysDealsBtn();
         Assert.assertTrue(todaysDealPage.ifTDPageIsOpen(), "No Today's Deals page is open");
         Assert.assertTrue(todaysDealPage.areGoodsHaveDiscount(), "Not All goods have discounts");
@@ -152,10 +163,12 @@ public class AmazonTest extends AbstractTest {
         //get driver and verify good page design. If not - then refresh
         RemoteWebDriver driver = driverT.get();
         HomePage homePage = new HomePage(driver);
+        //        HomePageBase homePage = initPage(driver, HomePageBase.class);  //for mobil
         refreshPageIfWrongDesign(driver, homePage.isGoodDesire());
 
         //Open filter capabilities
         MenuTab menuTab = new MenuTab(driver);
+        //        MenuTabBase menuTab = initPage(driver, MenuTabBase.class);  //for mobil
         FilterMenuPage filterMenuPage = menuTab.clickFilterMenuBtn();
 
         //Choose position of first level filter menu and verify its name present in title on appeared second level filter menu(or result page)
@@ -192,10 +205,12 @@ public class AmazonTest extends AbstractTest {
         //get driver and verify good page design. If not - then refresh
         RemoteWebDriver driver = driverT.get();
         HomePage homePage = new HomePage(driver);
+        //        HomePageBase homePage = initPage(driver, HomePageBase.class);  //for mobil
         refreshPageIfWrongDesign(driver, homePage.isGoodDesire());
 
         //Open filter capabilities and verify that filter capabilities are shown
         MenuTab menuTab = new MenuTab(driver);
+        //        MenuTabBase menuTab = initPage(driver, MenuTabBase.class);  //for mobil
         FilterMenuPage filterMenuPage = menuTab.clickFilterMenuBtn();
         Assert.assertTrue(filterMenuPage.isFMPageOpen(), "Filter menu page is not open");
 

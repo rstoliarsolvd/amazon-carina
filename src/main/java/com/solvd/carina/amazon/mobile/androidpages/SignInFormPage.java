@@ -42,7 +42,7 @@ public class SignInFormPage extends SignInFormPageBase {
         } else if (homeBtn1.isPresent()) {
             homeBtn1.click();
         }
-        HomePage homePage = new HomePage((RemoteWebDriver) driver);
+        HomePage homePage = initPage(driver,HomePage.class);
         waitForJSToLoad();
         LOGGER.info("click Home-Btn. And HomePage is open - " + homePage.isHomePageOpen());
     }

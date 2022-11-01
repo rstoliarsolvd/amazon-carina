@@ -25,7 +25,7 @@ public class MenuTab extends MenuTabBase {
     @Override
     public FilterMenuPage clickFilterMenuBtn() {
         filterMenuBtn.clickIfPresent();
-        return new FilterMenuPage((RemoteWebDriver) driver);
+        return initPage(driver, FilterMenuPage.class);
     }
 
     @Override

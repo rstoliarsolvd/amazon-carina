@@ -1,7 +1,9 @@
 package com.solvd.carina.amazon;
 
 
+import com.qaprosoft.carina.core.foundation.utils.Configuration;
 import com.solvd.carina.amazon.constants.Const;
+import io.appium.java_client.android.AndroidDriver;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.OutputType;
@@ -23,6 +25,7 @@ import java.io.File;
 import java.lang.invoke.MethodHandles;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
+
 
 public class AbstractTest {
 
@@ -54,8 +57,9 @@ public class AbstractTest {
  * For Selenium Standalone server
  */
         RemoteWebDriver driver = null;
+
         DesiredCapabilities cap = new DesiredCapabilities();
-//        Configuration.get(Configuration.Parameter.BROWSER);
+        Configuration.get(Configuration.Parameter.BROWSER);
 
         if (browser.equals("chrome")) {
             cap.setPlatform(Platform.ANY);
@@ -76,6 +80,8 @@ public class AbstractTest {
             System.out.println("Nothing");
         }
         driver = new RemoteWebDriver(new URL(Const.LOCAL_HOST), cap);
+//         ((AndroidDriver<?>) driver).activateApp("com.android.chrome");
+
 
 /**
  * For Selenium Standalone server and for Selenium  server

@@ -39,7 +39,7 @@ public class UpTab extends UpTabBase {
     public SignInFormPageBase clickSignInBtn() {
         signInBtn.clickIfPresent();
         waitForJSToLoad();
-        return new SignInFormPage((RemoteWebDriver) driver);
+        return initPage(driver, SignInFormPage.class);
     }
 
     @Override
@@ -75,7 +75,7 @@ public class UpTab extends UpTabBase {
     @Override
     public HomePageBase clickHomeBtn() {
         homeBtn.click();
-        HomePageBase homePage = new HomePage((RemoteWebDriver) driver);
+        HomePageBase homePage = initPage(driver,HomePage.class);
         waitForJSToLoad();
         LOGGER.info("HomePage is opened : " + homePage.isHomePageOpen());
         return initPage(HomePageBase.class);
