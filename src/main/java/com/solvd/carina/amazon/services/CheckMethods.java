@@ -2,11 +2,15 @@ package com.solvd.carina.amazon.services;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import org.openqa.selenium.support.FindBy;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import java.lang.invoke.MethodHandles;
 import java.util.List;
 import java.util.Locale;
 
 public class CheckMethods {
+    private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     public static final String GOOD_DESIGN_LOCATOR = "//*[@id='nav-main']";
 
@@ -23,11 +27,16 @@ public class CheckMethods {
      * @return
      */
     public static boolean isElementsPresentInList(List<String> whereList, int numElementsToCheck, List<String> whatList) {
+
+        if(whereList.isEmpty()) {
+            LOGGER.error("WHERE LIST IS EMPTY!))))");
+            return false;
+        }
         int countPresent = 0;
         for (int i = 0; i < numElementsToCheck; i++) {
             boolean elOfWhatPresentInElOfWhere = false;
 
-            for (int j = 0; j < whatList.size(); j++) {
+            for (int j = 0; j < whereList.size(); j++) {
                 String a = whereList.get(i).toLowerCase(Locale.ROOT);
                 String signdisc = whatList.get(j);
                 if (!a.contains(signdisc)) {

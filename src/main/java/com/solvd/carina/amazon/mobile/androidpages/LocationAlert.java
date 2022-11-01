@@ -21,8 +21,12 @@ public class LocationAlert extends LocationAlertBase {
     @FindBy(css = ".a-section.glow-toaster.glow-toaster-theme-default.glow-toaster-slot-default.nav-coreFlyout.nav-flyout")
     private ExtendedWebElement locationPopUp;
 
+    @FindBy(css = ".a-section.glow-toaster.glow-toaster-theme-default.glow-toaster-slot-default.nav-coreFlyout.nav-flyout")
+    private ExtendedWebElement uiLoadedMarker;
+
     public LocationAlert(WebDriver driver) {
         super(driver);
+        setUiLoadedMarker(uiLoadedMarker);
     }
 
     @Override

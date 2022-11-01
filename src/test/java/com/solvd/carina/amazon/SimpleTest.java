@@ -1,13 +1,10 @@
 package com.solvd.carina.amazon;
 
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
-import com.qaprosoft.carina.core.foundation.utils.Configuration;
-import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.core.foundation.utils.tag.Priority;
 import com.qaprosoft.carina.core.foundation.utils.tag.TestPriority;
 import com.zebrunner.agent.core.annotation.TestLabel;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
@@ -19,7 +16,7 @@ import java.lang.invoke.MethodHandles;
  *
  * @author
  */
-public class SimpleTest extends AbstractTest implements IAbstractTest{
+public class SimpleTest extends AbstractMobilTest implements IAbstractTest{
 
         private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 

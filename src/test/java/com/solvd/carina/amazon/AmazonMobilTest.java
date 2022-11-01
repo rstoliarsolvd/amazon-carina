@@ -1,5 +1,6 @@
 package com.solvd.carina.amazon;
 
+import com.qaprosoft.carina.core.foundation.utils.Configuration;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.core.foundation.utils.tag.Priority;
 import com.qaprosoft.carina.core.foundation.utils.tag.TestPriority;
@@ -15,7 +16,7 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class AmazonMobilTest extends AbstractTest {
+public class AmazonMobilTest extends AbstractMobilTest {
     private static final Logger LOGGER = Logger.getLogger(AmazonMobilTest.class);
 
 
@@ -110,28 +111,38 @@ public class AmazonMobilTest extends AbstractTest {
 //        String browser = Configuration.get(Configuration.Parameter.BROWSER);
 //        AbstractTest.setupDriver(browser);
         WebDriver driver = getDriver();
+
         //Output info about thread number and browser name
         LOGGER.info("verifyTodayDealsOption Thread.currentThread().getId() = " + Thread.currentThread().getId());
         LOGGER.info("This test is running on browser - " + ((HasCapabilities) driver).getCapabilities().getBrowserName());
 
         //get driver and verify good page design. If not - then refresh
         HomePageBase homePage = initPage(driver, HomePageBase.class);  //for mobil
+        homePage.open();
+        Assert.assertTrue(homePage.isPageOpened());
         refreshPageIfWrongDesign(driver, homePage.isGoodDesire());
 
         //Verify LocationAlert. If it is presented, then close it.
         LocationAlertBase lAlert = initPage(driver, LocationAlertBase.class);  //for mobil
 
         lAlert.verifyAlert();
+        Assert.assertTrue(lAlert.isPageOpened());
 
         //Press TodaysDeals and verify all goods have discounts on opened page
         MenuTabBase menuTab = initPage(driver, MenuTabBase.class);  //for mobil
+        Assert.assertTrue(menuTab.isPageOpened());
 
         TodaysDealPageBase todaysDealPage = menuTab.clickTodaysDealsBtn();
+        todaysDealPage.open();
+        Assert.assertTrue(todaysDealPage.isPageOpened());
+
         Assert.assertTrue(todaysDealPage.ifTDPageIsOpen(), "No Today's Deals page is open");
         Assert.assertTrue(todaysDealPage.areGoodsHaveDiscount(), "Not All goods have discounts");
 
         //back to home page
         UpTabBase upTab = initPage(driver, UpTabBase.class);
+        upTab.open();
+        Assert.assertTrue(upTab.isPageOpened());
         NavigationService.goHome(driver, upTab);
 
     }

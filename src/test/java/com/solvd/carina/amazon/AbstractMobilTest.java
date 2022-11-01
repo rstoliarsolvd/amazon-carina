@@ -2,36 +2,10 @@ package com.solvd.carina.amazon;
 
 
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
-import com.qaprosoft.carina.core.foundation.utils.Configuration;
-import com.solvd.carina.amazon.constants.Const;
-import org.apache.commons.io.FileUtils;
-import org.apache.log4j.PropertyConfigurator;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.Platform;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.remote.CapabilityType;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.safari.SafariOptions;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Parameters;
-
-import java.io.File;
-import java.lang.invoke.MethodHandles;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.concurrent.TimeUnit;
 
 
-public class AbstractTest implements IAbstractTest {
+public class AbstractMobilTest implements IAbstractTest {
 
 //    /**
 //     * For Selenium Standalone server //for parallel ran (multiThread)

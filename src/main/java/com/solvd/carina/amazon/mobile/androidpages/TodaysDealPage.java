@@ -1,7 +1,9 @@
 package com.solvd.carina.amazon.mobile.androidpages;
 
+import com.qaprosoft.carina.core.foundation.utils.Configuration;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.solvd.carina.amazon.constants.Const;
 import com.solvd.carina.amazon.mobile.base.TodaysDealPageBase;
 import com.solvd.carina.amazon.services.CheckMethods;
 import org.apache.log4j.Logger;
@@ -30,8 +32,13 @@ public class TodaysDealPage extends TodaysDealPageBase {
     @FindBy(xpath = "//div[@aria-label='Watch now']")
     private ExtendedWebElement watchNow;
 
+    @FindBy(xpath = "//div[@aria-label='Watch now']")
+    private ExtendedWebElement uiLoaderMarker;
+
     public TodaysDealPage(WebDriver driver) {
         super(driver);
+        setUiLoadedMarker(uiLoaderMarker);
+        setPageURL(Const.TODAYS_URL);
     }
 
     @Override

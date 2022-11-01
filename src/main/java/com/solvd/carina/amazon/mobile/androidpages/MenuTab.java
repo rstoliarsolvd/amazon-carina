@@ -18,8 +18,12 @@ public class MenuTab extends MenuTabBase {
     @FindBy(xpath = "//*[@class='hm-icon nav-sprite']")
     private ExtendedWebElement filterMenuBtn;
 
+    @FindBy(xpath = "//*[@class='hm-icon nav-sprite']")
+    private ExtendedWebElement uiLoadedMarker;
+
     public MenuTab(WebDriver driver) {
         super(driver);
+        setUiLoadedMarker(uiLoadedMarker);
     }
 
     @Override

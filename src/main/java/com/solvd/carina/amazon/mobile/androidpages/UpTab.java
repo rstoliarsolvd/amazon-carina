@@ -29,11 +29,15 @@ public class UpTab extends UpTabBase {
     @FindBy(id = "nav-logo-sprites")
     private ExtendedWebElement homeBtn;
 
+    @FindBy(id = "nav-logo-sprites")
+    private ExtendedWebElement uiLoadedMarker;
+
     @FindBy(xpath = "//input[@id='nav-search-submit-button']")
     private ExtendedWebElement searchBtn;
 
     public UpTab(WebDriver driver) {
         super(driver);
+        setUiLoadedMarker(uiLoadedMarker);
     }
 
     @Override
