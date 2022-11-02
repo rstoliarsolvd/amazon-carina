@@ -5,6 +5,7 @@ import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.core.foundation.utils.tag.Priority;
 import com.qaprosoft.carina.core.foundation.utils.tag.TestPriority;
+import com.qaprosoft.carina.core.foundation.webdriver.Screenshot;
 import com.solvd.carina.amazon.services.NavigationServiceWeb;
 import com.solvd.carina.amazon.utils.RetryTestRunAttempts;
 import com.solvd.carina.amazon.webpages.*;
@@ -15,6 +16,7 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
 
 public class AmazonWebTest extends AbstractWebTest {
 
@@ -39,9 +41,10 @@ public class AmazonWebTest extends AbstractWebTest {
         /**
          * Next raw for run test on different browsers taken from DataProvider
          */
-        R.CONFIG.put(Configuration.Parameter.BROWSER.getKey(), browser, true);
+//        R.CONFIG.put(Configuration.Parameter.BROWSER.getKey(), browser, true);//not the best way
+        R.CONFIG.put("capabilities.browserName", browser, true);
         //Driver initialisation (all from dataProvider)
-        WebDriver driver = getDriver();
+        WebDriver driver = getDriver(browser);
 
         //Output info about thread number and browser name
         LOGGER.info("verifySignInFormAppearedTest Thread.currentThread().getId() = " + Thread.currentThread().getId());
@@ -75,12 +78,13 @@ public class AmazonWebTest extends AbstractWebTest {
     @TestPriority(Priority.P1)
     @TestLabel(name = "feature", value = {"web", "regression"})
 
-    public void verifySearchFieldAndHomeBtn(String searchItem) throws Exception {
+    public void verifySearchFieldAndHomeBtn(String searchItem) {
 
         /**
          * Next raw for run test on another browser (firefox)
          */
 //        R.CONFIG.put(Configuration.Parameter.BROWSER.getKey(), "firefox", true);
+        R.CONFIG.put("capabilities.browserName", "firefox", true);
 
         //Driver initialisation
         WebDriver driver = getDriver();
@@ -99,6 +103,7 @@ public class AmazonWebTest extends AbstractWebTest {
 //        ResultsPage resultsPage = upTab.findItem(searchItem);
         ResultsPage resultsPage = upTab.findItem("tree");
         Assert.assertTrue(resultsPage.areTitlesContainsItem(searchItem), "Not all goods titles contains searched items");
+        Screenshot.capture(homePage.getDriver(), "Screenshot capture!");
 
         //back to home page and verify that home page is open
         homePage = NavigationServiceWeb.goHome(driver);
@@ -119,6 +124,8 @@ public class AmazonWebTest extends AbstractWebTest {
          * Next raw for run test on another browser (firefox)
          */
 //        R.CONFIG.put(Configuration.Parameter.BROWSER.getKey(), "firefox", true);
+//        R.CONFIG.put("capabilities.browserName", "firefox", true); //the best
+
 
         //Driver initialisation
         WebDriver driver = getDriver();
@@ -161,10 +168,11 @@ public class AmazonWebTest extends AbstractWebTest {
         /**
          * Next raw for run test on different browsers taken from DataProvider
          */
-        R.CONFIG.put(Configuration.Parameter.BROWSER.getKey(), browser, true);
+//        R.CONFIG.put(Configuration.Parameter.BROWSER.getKey(), browser, true);
+        R.CONFIG.put("capabilities.browserName", browser, true);//the best
 
         //Driver initialisation (all from dataProvider)
-        WebDriver driver = getDriver();
+        WebDriver driver = getDriver(browser);
 
         //Output info about thread number and browser name
         LOGGER.info("verifyFilterTest Thread.currentThread().getId() = " + Thread.currentThread().getId());

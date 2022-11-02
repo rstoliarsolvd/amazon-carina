@@ -148,18 +148,16 @@ public class AmazonMobilTest extends AbstractMobilTest {
     }
 
     //    @TestRailCases(testCasesId = "114", suiteId = "N1")
-    @Test(dataProvider = "browser",
-            description = "Verify all goods provided after choosing filter options are have attitude to position we were seeking"
+    @Test(description = "Verify all goods provided after choosing filter options are have attitude to position we were seeking"
 //            , retryAnalyzer = RetryTestRunAttempts.class
     )
     @MethodOwner(owner = "rstoliar", platform = "web")
     @TestPriority(Priority.P1)
     @TestLabel(name = "feature", value = {"web", "regression"})
 
-    public void verifyFilterTest(String browser) throws Exception {
+    public void verifyFilterTest() throws Exception {
 
-        //Driver initialisation (all from dataProvider)
-//        AbstractTest.setupDriver(browser);
+        //Driver initialisation
 
         WebDriver driver = getDriver();
         //Output info about thread number and browser name

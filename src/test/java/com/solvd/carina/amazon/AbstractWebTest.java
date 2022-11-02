@@ -26,10 +26,10 @@ public class AbstractWebTest implements IAbstractTest {
      *
      * @param result
      */
-    public void screenShot(ITestResult result, WebDriver driver) {
+    public void screenShot(ITestResult result) {
         if (ITestResult.FAILURE == result.getStatus()) {
             try {
-                TakesScreenshot screenshot = (TakesScreenshot) driver;
+                TakesScreenshot screenshot = (TakesScreenshot) getDriver();
                 File src = screenshot.getScreenshotAs(OutputType.FILE);
                 /**
                  * This block needed only for not re-writing screenshots
@@ -49,7 +49,7 @@ public class AbstractWebTest implements IAbstractTest {
     @AfterMethod
     public void setUpCloseAndScreenshotFail(ITestResult result) {
         WebDriver driver = getDriver();
-        screenShot(result, driver);
+        screenShot(result);
     }
 
     public void refreshPageIfWrongDesign(WebDriver driver, boolean isGoodDesire) {
