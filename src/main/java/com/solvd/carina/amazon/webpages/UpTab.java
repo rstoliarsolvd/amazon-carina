@@ -69,7 +69,7 @@ public class UpTab extends AbstractPage {
        homeBtn.click();
         HomePage homePage = new HomePage(driver);
         waitForJSToLoad();
-        LOGGER.info("HomePage is opened : " + homePage.isHomePageOpen());
+        LOGGER.info("HomePage is opened : " + homePage.isPageOpened());
         return homePage;
     }
 }

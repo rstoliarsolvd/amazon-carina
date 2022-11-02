@@ -2,6 +2,7 @@ package com.solvd.carina.amazon.webpages;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
+import com.solvd.carina.amazon.constants.Const;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -23,18 +24,23 @@ private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.looku
     @FindBy(xpath = "//*[@aria-label='Amazon']")
     private ExtendedWebElement homeBtn1;
 
+    @FindBy(xpath = "//h1[@class='a-spacing-small']")
+    private ExtendedWebElement uiLoadedMarker;
+
     private String titleName = "Sign in";
 
     public SignInFormPage(WebDriver driver) {
         super(driver);
+        setUiLoadedMarker(uiLoadedMarker);
+        setPageURL(Const.SIGNIN_URL);
     }
 
-    public boolean isHeaderSignIn() {
-        String headerText = header.getText();
-        boolean isHeaderGood = headerText.equals(titleName);
-        LOGGER.info("Verifying the header of window (that is - " + headerText + ") have title - 'Sign in' . This is - " + isHeaderGood);
-        return isHeaderGood;
-    }
+//    public boolean isHeaderSignIn() {
+//        String headerText = header.getText();
+//        boolean isHeaderGood = headerText.equals(titleName);
+//        LOGGER.info("Verifying the header of window (that is - " + headerText + ") have title - 'Sign in' . This is - " + isHeaderGood);
+//        return isHeaderGood;
+//    }
 
     public void clickHomeBtn() {
         if (homeBtn.isPresent()) {
@@ -44,7 +50,7 @@ private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.looku
         }
         HomePage homePage = new HomePage( driver);
         waitForJSToLoad();
-        LOGGER.info("click Home-Btn. And HomePage is open - " + homePage.isHomePageOpen());
+        LOGGER.info("click Home-Btn. And HomePage is open - " + homePage.isPageOpened());
 
     }
 }

@@ -8,12 +8,12 @@
         <classes>
 <!--            <class name="com.solvd.carina.amazon.AmazonMobilTest">-->
             <class name="com.solvd.carina.amazon.AmazonWebTest">
-<!--                Below variant to run just the mentioned tests-->
-                <methods>
-<!--                    <include name="verifySignInFormAppearedTest"/>-->
-                    <include name="verifySearchFieldAndHomeBtn"/>
-<!--                    <include name="verifyTodayDealsOption"/>-->
-                </methods>
+<!--&lt;!&ndash;                Below variant to run just the mentioned tests&ndash;&gt;-->
+<!--                <methods>-->
+<!--&lt;!&ndash;                    <include name="verifySignInFormAppearedTest"/>&ndash;&gt;-->
+<!--                    <include name="verifySearchFieldAndHomeBtn"/>-->
+<!--&lt;!&ndash;                    <include name="verifyTodayDealsOption"/>&ndash;&gt;-->
+<!--                </methods>-->
             </class>
         </classes>
     </test>

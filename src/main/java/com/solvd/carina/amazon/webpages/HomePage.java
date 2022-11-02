@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import java.lang.invoke.MethodHandles;
 
+import static com.solvd.carina.amazon.constants.Const.HOME_LOGO_URL;
 import static com.solvd.carina.amazon.constants.Const.HOME_URL;
 
 
@@ -32,17 +33,18 @@ private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.looku
         super(driver);
 //        setPageURL("http://amazon.com");
         setPageURL(HOME_URL);
+//        setPageURL(HOME_LOGO_URL);
     }
 
-    public boolean isHomePageOpen() {
-        waitForJSToLoad();
-        FilterMenuPage filterMenuPage = new FilterMenuPage(driver);
-        boolean isHomePageOpened = driver.getCurrentUrl().equals(R.CONFIG.get("url"))
-                || driver.getCurrentUrl().equals(R.CONFIG.get("url_logo"))
-                || desktopCardLayout.isElementPresent();
-        LOGGER.info("Verifying Home-page is opened: " + isHomePageOpened);
-        return isHomePageOpened;
-    }
+//    public boolean isHomePageOpen() {
+//        waitForJSToLoad();
+//        FilterMenuPage filterMenuPage = new FilterMenuPage(driver);
+//        boolean isHomePageOpened = driver.getCurrentUrl().equals(R.CONFIG.get("url"))
+//                || driver.getCurrentUrl().equals(R.CONFIG.get("url_logo"))
+//                || desktopCardLayout.isElementPresent();
+//        LOGGER.info("Verifying Home-page is opened: " + isHomePageOpened);
+//        return isHomePageOpened;
+//    }
 
     public ExtendedWebElement getHomePageWebElement() {
         return desktopCardLayout;

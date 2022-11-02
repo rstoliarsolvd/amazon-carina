@@ -43,6 +43,7 @@ public class AmazonWebTest extends AbstractWebTest {
          */
 //        R.CONFIG.put(Configuration.Parameter.BROWSER.getKey(), browser, true);//not the best way
         R.CONFIG.put("capabilities.browserName", browser, true);
+
         //Driver initialisation (all from dataProvider)
         WebDriver driver = getDriver(browser);
 
@@ -60,7 +61,8 @@ public class AmazonWebTest extends AbstractWebTest {
         UpTab upTab = new UpTab(driver);
 
         SignInFormPage signInFormPage = upTab.clickSignInBtn();
-        Assert.assertTrue(signInFormPage.isHeaderSignIn(), "Header on opened page is not 'Sign in'");
+//        Assert.assertTrue(signInFormPage.isHeaderSignIn(), "Header on opened page is not 'Sign in'");
+        Assert.assertTrue(signInFormPage.isPageOpened(), "Header on opened page is not 'Sign in'");
 
         //back to home page
         signInFormPage.clickHomeBtn();
@@ -100,14 +102,14 @@ public class AmazonWebTest extends AbstractWebTest {
 
         //Input searched good and verify result for it
         UpTab upTab = new UpTab(driver);
-//        ResultsPage resultsPage = upTab.findItem(searchItem);
-        ResultsPage resultsPage = upTab.findItem("tree");
+        ResultsPage resultsPage = upTab.findItem(searchItem); //for pass test
+//        ResultsPage resultsPage = upTab.findItem("tree");  //for fail
         Assert.assertTrue(resultsPage.areTitlesContainsItem(searchItem), "Not all goods titles contains searched items");
-        Screenshot.capture(homePage.getDriver(), "Screenshot capture!");
+        Screenshot.capture(driver, "Screenshot capture!");
 
         //back to home page and verify that home page is open
         homePage = NavigationServiceWeb.goHome(driver);
-        Assert.assertTrue(homePage.isHomePageOpen(), "Home page is not opened");
+        Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
     }
 
     //    @Test(retryAnalyzer = RetryTestRunAttempts.class)
@@ -123,7 +125,6 @@ public class AmazonWebTest extends AbstractWebTest {
         /**
          * Next raw for run test on another browser (firefox)
          */
-//        R.CONFIG.put(Configuration.Parameter.BROWSER.getKey(), "firefox", true);
 //        R.CONFIG.put("capabilities.browserName", "firefox", true); //the best
 
 
@@ -148,7 +149,7 @@ public class AmazonWebTest extends AbstractWebTest {
         MenuTab menuTab = new MenuTab(driver);
 
         TodaysDealPage todaysDealPage = menuTab.clickTodaysDealsBtn();
-        Assert.assertTrue(todaysDealPage.ifTDPageIsOpen(), "No Today's Deals page is open");
+        Assert.assertTrue(todaysDealPage.isPageOpened(), "No Today's Deals page is open");
         Assert.assertTrue(todaysDealPage.areGoodsHaveDiscount(), "Not All goods have discounts");
 
         //back to home page
@@ -191,7 +192,7 @@ public class AmazonWebTest extends AbstractWebTest {
 
         //Choose position of first level filter menu and verify its name present in title on appeared second level filter menu(or result page)
         filterMenuPage = filterMenuPage.clickSmartHomeBtn();
-        Assert.assertTrue(filterMenuPage.isFMPageOpen(), "Filter menu page is not open");
+        Assert.assertTrue(filterMenuPage.isPageOpened(), "Filter menu page is not open");
         Assert.assertTrue(filterMenuPage.isSmartTitlePresent(), "Filter menu page do not contain the needed title of menu block");
 
         //Choose position of second level filter menu and verify its name present in title on appeared result page
@@ -233,10 +234,10 @@ public class AmazonWebTest extends AbstractWebTest {
         //Open filter capabilities and verify that filter capabilities are shown
         MenuTab menuTab = new MenuTab(driver);
         FilterMenuPage filterMenuPage = menuTab.clickFilterMenuBtn();
-        Assert.assertTrue(filterMenuPage.isFMPageOpen(), "Filter menu page is not open");
+        Assert.assertTrue(filterMenuPage.isPageOpened(), "Filter menu page is not open");
 
         //Close filter page and back to home page. Verify home page is open
         homePage = filterMenuPage.clickCloseBtn();
-        Assert.assertTrue(homePage.isHomePageOpen(), "Home page is not open");
+        Assert.assertTrue(homePage.isPageOpened(), "Home page is not open");
     }
 }

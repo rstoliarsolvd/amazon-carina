@@ -1,7 +1,9 @@
 package com.solvd.carina.amazon.webpages;
 
+import com.qaprosoft.carina.core.foundation.utils.Configuration;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
+import com.solvd.carina.amazon.constants.Const;
 import com.solvd.carina.amazon.services.CheckMethods;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -33,9 +35,14 @@ private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.looku
     @FindBy(xpath = "//div[@aria-label='Watch now']")
     private ExtendedWebElement watchNow;
 
+    @FindBy(xpath = "//div[@id='nav-subnav']")
+    private ExtendedWebElement uiLoaderMarker;
+
 
     public TodaysDealPage(WebDriver driver) {
         super(driver);
+        setUiLoadedMarker(uiLoaderMarker);
+        setPageURL(Const.TODAYS_URL);
     }
 
     public boolean areGoodWithDealsPresent() {
@@ -44,10 +51,10 @@ private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.looku
         return areGoodDealsPresent;
     }
 
-    public boolean ifTDPageIsOpen() {
-        waitForJSToLoad();
-        return areGoodsHaveDiscount();
-    }
+//    public boolean ifTDPageIsOpen() {
+//        waitForJSToLoad();
+//        return areGoodsHaveDiscount();
+//    }
 
     public List<String> goodsTitleDiscountsList() {
         return discountGoods.stream()

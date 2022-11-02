@@ -1,5 +1,6 @@
 package com.solvd.carina.amazon.webpages;
 
+import com.qaprosoft.carina.core.foundation.utils.Configuration;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
@@ -23,6 +24,9 @@ public class FilterMenuPage extends AbstractPage {
     @FindBy(xpath = "//div[@class ='nav-sprite hmenu-close-icon']")
     private ExtendedWebElement closeFilterMenuBtn;
 
+    @FindBy(xpath = "//div[@class ='nav-sprite hmenu-close-icon']")
+    private ExtendedWebElement uiLoaderMarker;
+
     //    @FindBy(xpath = "//*[@id='hmenu-content']") // the same locator but upper and wider (needed depends on page design)
     @FindBy(xpath = "//ul[@class='hmenu hmenu-visible']")
     private ExtendedWebElement filterBlock;
@@ -35,6 +39,8 @@ public class FilterMenuPage extends AbstractPage {
 
     public FilterMenuPage(WebDriver driver) {
         super(driver);
+        setUiLoadedMarker(uiLoaderMarker);
+        setPageURL(Configuration.get(Configuration.Parameter.URL));
     }
 
     public FilterMenuPage clickSmartHomeBtn() {
@@ -52,10 +58,10 @@ public class FilterMenuPage extends AbstractPage {
 
     }
 
-    public boolean isFMPageOpen() {
-        waitForJSToLoad();
-        return closeFilterMenuBtn.isElementPresent() || filterBlock.isElementPresent();
-    }
+//    public boolean isFMPageOpen() {
+//        waitForJSToLoad();
+//        return closeFilterMenuBtn.isElementPresent() || filterBlock.isElementPresent();
+//    }
 
     public boolean isSmartTitlePresent() {
         waitForJSToLoad();
