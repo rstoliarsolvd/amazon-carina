@@ -3,6 +3,7 @@ package com.solvd.carina.amazon.webpages;
 import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
+import com.solvd.carina.amazon.constants.Const;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -29,7 +30,8 @@ private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.looku
 
     public HomePage(WebDriver driver) {
         super(driver);
-        setPageURL("http://amazon.com");
+//        setPageURL("http://amazon.com");
+        setPageURL(HOME_URL);
     }
 
     public boolean isHomePageOpen() {

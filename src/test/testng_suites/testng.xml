@@ -10,6 +10,7 @@
             <class name="com.solvd.carina.amazon.AmazonWebTest">
 <!--                Below variant to run just the mentioned tests-->
                 <methods>
+<!--                    <include name="verifySignInFormAppearedTest"/>-->
                     <include name="verifySearchFieldAndHomeBtn"/>
 <!--                    <include name="verifyTodayDealsOption"/>-->
                 </methods>
