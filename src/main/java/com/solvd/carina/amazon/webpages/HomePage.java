@@ -11,6 +11,8 @@ import org.slf4j.LoggerFactory;
 
 import java.lang.invoke.MethodHandles;
 
+import static com.solvd.carina.amazon.constants.Const.HOME_URL;
+
 
 public class HomePage extends AbstractPage {
 
@@ -25,13 +27,14 @@ private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.looku
     @FindBy(xpath = "//*[@id='nav-main']")
     ExtendedWebElement goodDesignLocator;
 
-    public HomePage(RemoteWebDriver driver) {
+    public HomePage(WebDriver driver) {
         super(driver);
+        setPageURL("http://amazon.com");
     }
 
     public boolean isHomePageOpen() {
         waitForJSToLoad();
-        FilterMenuPage filterMenuPage = new FilterMenuPage((RemoteWebDriver) driver);
+        FilterMenuPage filterMenuPage = new FilterMenuPage(driver);
         boolean isHomePageOpened = driver.getCurrentUrl().equals(R.CONFIG.get("url"))
                 || driver.getCurrentUrl().equals(R.CONFIG.get("url_logo"))
                 || desktopCardLayout.isElementPresent();

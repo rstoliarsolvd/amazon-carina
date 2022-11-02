@@ -4,6 +4,7 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.solvd.carina.amazon.services.CheckMethods;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
@@ -33,7 +34,7 @@ private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.looku
     private ExtendedWebElement watchNow;
 
 
-    public TodaysDealPage(RemoteWebDriver driver) {
+    public TodaysDealPage(WebDriver driver) {
         super(driver);
     }
 

@@ -12,13 +12,15 @@ import org.openqa.selenium.support.PageFactory;
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = MenuTabBase.class)
 public class MenuTab extends MenuTabBase {
 
-    @FindBy(xpath = "//*[@id='nav-xshop']//a[1]")
+//    @FindBy(xpath = "//*[@id='nav-xshop']//a[1]")   // for web
+    @FindBy(xpath = "//*[@id='intlDeals']")  //for mobil
     private ExtendedWebElement todaysDealsBtn;
 
-    @FindBy(xpath = "//*[@class='hm-icon nav-sprite']")
+//    @FindBy(xpath = "//*[@class='hm-icon nav-sprite']")    // for web
+    @FindBy(xpath = "//i[@class='nav-icon-a11y nav-sprite']")  //for mobil
     private ExtendedWebElement filterMenuBtn;
 
-    @FindBy(xpath = "//*[@class='hm-icon nav-sprite']")
+    @FindBy(xpath = "//i[@class='nav-icon-a11y nav-sprite']")
     private ExtendedWebElement uiLoadedMarker;
 
     public MenuTab(WebDriver driver) {

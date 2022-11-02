@@ -2,6 +2,7 @@ package com.solvd.carina.amazon.webpages;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
@@ -24,7 +25,7 @@ private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.looku
 
     private String titleName = "Sign in";
 
-    public SignInFormPage(RemoteWebDriver driver) {
+    public SignInFormPage(WebDriver driver) {
         super(driver);
     }
 
@@ -41,7 +42,7 @@ private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.looku
         } else if (homeBtn1.isPresent()) {
             homeBtn1.click();
         }
-        HomePage homePage = new HomePage((RemoteWebDriver) driver);
+        HomePage homePage = new HomePage( driver);
         waitForJSToLoad();
         LOGGER.info("click Home-Btn. And HomePage is open - " + homePage.isHomePageOpen());
 

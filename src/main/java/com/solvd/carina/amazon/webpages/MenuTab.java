@@ -2,6 +2,7 @@ package com.solvd.carina.amazon.webpages;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
@@ -20,17 +21,17 @@ public class MenuTab extends AbstractPage {
     @FindBy(xpath = "//*[@class='hm-icon nav-sprite']")
     private ExtendedWebElement filterMenuBtn;
 
-    public MenuTab(RemoteWebDriver driver) {
+    public MenuTab(WebDriver driver) {
         super(driver);
     }
 
     public FilterMenuPage clickFilterMenuBtn() {
         filterMenuBtn.clickIfPresent();
-        return new FilterMenuPage((RemoteWebDriver) driver);
+        return new FilterMenuPage( driver);
     }
 
     public TodaysDealPage clickTodaysDealsBtn() {
        todaysDealsBtn.clickIfPresent();
-        return new TodaysDealPage((RemoteWebDriver) driver);
+        return new TodaysDealPage(driver);
     }
 }

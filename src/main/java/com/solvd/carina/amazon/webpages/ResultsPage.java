@@ -3,6 +3,7 @@ package com.solvd.carina.amazon.webpages;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.solvd.carina.amazon.services.CheckMethods;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
@@ -19,7 +20,7 @@ public class ResultsPage extends AbstractPage {
     @FindBy(xpath = "//*[contains(@class, 's-main-slot')]//*[contains(@class, 's-title-instructions-style')]")
     private List<ExtendedWebElement> goodsResult;
 
-    public ResultsPage(RemoteWebDriver driver) {
+    public ResultsPage(WebDriver driver) {
         super(driver);
     }
 

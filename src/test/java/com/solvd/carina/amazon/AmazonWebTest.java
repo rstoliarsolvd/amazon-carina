@@ -5,7 +5,6 @@ import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.core.foundation.utils.tag.Priority;
 import com.qaprosoft.carina.core.foundation.utils.tag.TestPriority;
-import com.solvd.carina.amazon.services.NavigationService;
 import com.solvd.carina.amazon.services.NavigationServiceWeb;
 import com.solvd.carina.amazon.utils.RetryTestRunAttempts;
 import com.solvd.carina.amazon.webpages.*;
@@ -13,14 +12,13 @@ import com.zebrunner.agent.core.annotation.TestLabel;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.HasCapabilities;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class AmazonWebTest extends AbstractWebTest{
+public class AmazonWebTest extends AbstractWebTest {
 
-        private static final Logger LOGGER = Logger.getLogger(com.solvd.carina.amazon.AmazonWebTest.class);
+    private static final Logger LOGGER = Logger.getLogger(com.solvd.carina.amazon.AmazonWebTest.class);
 
 
     @DataProvider(name = "browser")
@@ -39,14 +37,15 @@ public class AmazonWebTest extends AbstractWebTest{
     public void verifySignInFormAppearedTest(String browser) throws Exception {
 
         //Driver initialisation (all from dataProvider)
-        AbstractWebTest.setupDriver(browser);
+//        AbstractWebTest.setupDriver(browser);
+        WebDriver driver = getDriver();
 
         //Output info about thread number and browser name
         LOGGER.info("verifySignInFormAppearedTest Thread.currentThread().getId() = " + Thread.currentThread().getId());
-        LOGGER.info("This test is running on browser - " + driverT.get().getCapabilities().getBrowserName());
+        LOGGER.info("This test is running on browser - " + ((HasCapabilities)getDriver()).getCapabilities().getBrowserName());
 
         //get driver and verify good page design. If not - then refresh
-        RemoteWebDriver driver = driverT.get();
+//        RemoteWebDriver driver = driverT.get();
         HomePage homePage = new HomePage(driver);
 //        HomePageBase homePage = initPage(driver, HomePageBase.class);  //for mobil
 
@@ -79,15 +78,17 @@ public class AmazonWebTest extends AbstractWebTest{
 
         //Driver initialisation (default)
         String browser = Configuration.getBrowser();
-        AbstractWebTest.setupDriver(browser);
+//        AbstractWebTest.setupDriver(browser);
 
         //Output info about thread number and browser name
         LOGGER.info("verifySearchFieldAndHomeBtn Thread.currentThread().getId() = " + Thread.currentThread().getId());
-        LOGGER.info("This test is running on browser - " + driverT.get().getCapabilities().getBrowserName());
+        LOGGER.info("This test is running on browser - " + ((HasCapabilities)getDriver()).getCapabilities().getBrowserName());
 
         //get driver and verify good page design. If not - then refresh
-        RemoteWebDriver driver = driverT.get();
+//        RemoteWebDriver driver = driverT.get();
+        WebDriver driver = getDriver();
         HomePage homePage = new HomePage(driver);
+        homePage.open();
         //        HomePageBase homePage = initPage(driver, HomePageBase.class);  //for mobil
         refreshPageIfWrongDesign(driver, homePage.isGoodDesire());
 
@@ -114,14 +115,15 @@ public class AmazonWebTest extends AbstractWebTest{
 
         //Driver initialisation (default)
         String browser = Configuration.get(Configuration.Parameter.BROWSER);
-        AbstractWebTest.setupDriver(browser);
+//        AbstractWebTest.setupDriver(browser);
 
         //Output info about thread number and browser name
         LOGGER.info("verifyTodayDealsOption Thread.currentThread().getId() = " + Thread.currentThread().getId());
-        LOGGER.info("This test is running on browser - " + driverT.get().getCapabilities().getBrowserName());
+        LOGGER.info("This test is running on browser - " + ((HasCapabilities)getDriver()).getCapabilities().getBrowserName());
 
         //get driver and verify good page design. If not - then refresh
-        RemoteWebDriver driver = driverT.get();
+//        RemoteWebDriver driver = driverT.get();
+        WebDriver driver = getDriver();
         HomePage homePage = new HomePage(driver);
         //        HomePageBase homePage = initPage(driver, HomePageBase.class);  //for mobil
         refreshPageIfWrongDesign(driver, homePage.isGoodDesire());
@@ -154,24 +156,24 @@ public class AmazonWebTest extends AbstractWebTest{
     @TestLabel(name = "feature", value = {"web", "regression"})
 
     public void verifyFilterTest(String browser) throws Exception {
-
+        R.CONFIG.put(Configuration.Parameter.BROWSER.getKey(), browser, true);
         //Driver initialisation (all from dataProvider)
-        AbstractWebTest.setupDriver(browser);
+//        AbstractWebTest.setupDriver(browser);
 
         //Output info about thread number and browser name
         LOGGER.info("verifyFilterTest Thread.currentThread().getId() = " + Thread.currentThread().getId());
-        LOGGER.info("This test is running on browser - " + driverT.get().getCapabilities().getBrowserName());
+        LOGGER.info("This test is running on browser - " + ((HasCapabilities)getDriver()).getCapabilities().getBrowserName());
 
         String pet = "pet";
 
         //get driver and verify good page design. If not - then refresh
-        RemoteWebDriver driver = driverT.get();
-        HomePage homePage = new HomePage(driver);
+//        RemoteWebDriver driver = driverT.get();
+        HomePage homePage = new HomePage(getDriver());
         //        HomePageBase homePage = initPage(driver, HomePageBase.class);  //for mobil
-        refreshPageIfWrongDesign(driver, homePage.isGoodDesire());
+        refreshPageIfWrongDesign(getDriver(), homePage.isGoodDesire());
 
         //Open filter capabilities
-        MenuTab menuTab = new MenuTab(driver);
+        MenuTab menuTab = new MenuTab(getDriver());
         //        MenuTabBase menuTab = initPage(driver, MenuTabBase.class);  //for mobil
         FilterMenuPage filterMenuPage = menuTab.clickFilterMenuBtn();
 
@@ -186,7 +188,7 @@ public class AmazonWebTest extends AbstractWebTest{
         Assert.assertTrue(filterResultPage.areAllGoodsTitleContainsSearchItem(pet), "No 'Pet' in title on filter result page present");
 
         //back to home page
-        NavigationServiceWeb.goHome(driver);
+        NavigationServiceWeb.goHome(getDriver());
     }
 
     //    @TestRailCases(testCasesId = "115", suiteId = "N1")
@@ -200,20 +202,21 @@ public class AmazonWebTest extends AbstractWebTest{
     public void verifyFilterMenuCloseBtn(String browser) throws Exception {
 
         //Driver initialisation (all from dataProvider)
-        AbstractWebTest.setupDriver(browser);
+//        AbstractWebTest.setupDriver(browser);
 
         //Output info about thread number and browser name
         LOGGER.info("verifyFilterMenuCloseBtn Thread.currentThread().getId() = " + Thread.currentThread().getId());
-        LOGGER.info("This test is running on browser - " + driverT.get().getCapabilities().getBrowserName());
+        LOGGER.info("This test is running on browser - " + ((HasCapabilities)getDriver()).getCapabilities().getBrowserName());
 
         //get driver and verify good page design. If not - then refresh
-        RemoteWebDriver driver = driverT.get();
-        HomePage homePage = new HomePage(driver);
+//        RemoteWebDriver driver = driverT.get();
+        HomePage homePage = new HomePage(getDriver());
+        homePage.open();
         //        HomePageBase homePage = initPage(driver, HomePageBase.class);  //for mobil
-        refreshPageIfWrongDesign(driver, homePage.isGoodDesire());
+        refreshPageIfWrongDesign(getDriver(), homePage.isGoodDesire());
 
         //Open filter capabilities and verify that filter capabilities are shown
-        MenuTab menuTab = new MenuTab(driver);
+        MenuTab menuTab = new MenuTab(getDriver());
         //        MenuTabBase menuTab = initPage(driver, MenuTabBase.class);  //for mobil
         FilterMenuPage filterMenuPage = menuTab.clickFilterMenuBtn();
         Assert.assertTrue(filterMenuPage.isFMPageOpen(), "Filter menu page is not open");

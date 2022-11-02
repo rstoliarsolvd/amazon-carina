@@ -15,6 +15,9 @@ public class FilterMenuPage extends FilterMenuPageBase {
 
     private static final Logger LOGGER = Logger.getLogger(FilterMenuPage.class);
 
+    @FindBy(xpath = "//i[@class='nav-sprite hmenu-arrow-more']")
+    private ExtendedWebElement seeAllBtn;  //for mobil
+
     @FindBy(xpath = "//div[text()='Smart Home']")
     private ExtendedWebElement smartHomeBtn;
 

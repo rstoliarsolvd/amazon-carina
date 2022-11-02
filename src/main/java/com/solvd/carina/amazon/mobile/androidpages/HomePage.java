@@ -18,7 +18,8 @@ public class HomePage extends HomePageBase {
     @FindBy(xpath = "//div[@id='desktop-banner-stripe']")
     private ExtendedWebElement desktopBannerStripe;
 
-    @FindBy(xpath = "//div[@id='gw-card-layout']")
+//    @FindBy(xpath = "//div[@id='gw-card-layout']")    // for web
+    @FindBy(xpath = "//div[@id='gwm-Deck-cf']")   //for mobil
     private ExtendedWebElement desktopCardLayout;
 
     @FindBy(xpath = "//*[@id='nav-main']")

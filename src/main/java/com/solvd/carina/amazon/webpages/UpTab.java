@@ -3,6 +3,7 @@ package com.solvd.carina.amazon.webpages;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
@@ -29,14 +30,14 @@ public class UpTab extends AbstractPage {
     @FindBy(xpath = "//input[@id='nav-search-submit-button']")
     private ExtendedWebElement searchBtn;
 
-    public UpTab(RemoteWebDriver driver) {
+    public UpTab(WebDriver driver) {
         super(driver);
     }
 
     public SignInFormPage clickSignInBtn() {
         signInBtn.clickIfPresent();
         waitForJSToLoad();
-        return new SignInFormPage((RemoteWebDriver) driver);
+        return new SignInFormPage(driver);
     }
 
     public void clickSearchField() {
@@ -45,7 +46,7 @@ public class UpTab extends AbstractPage {
 
     public ResultsPage inputTextInSearchField(String searchItem) {
         searchField.getElement().sendKeys(searchItem, Keys.ENTER);
-        return new ResultsPage((RemoteWebDriver) driver);
+        return new ResultsPage(driver);
     }
 
     /**
@@ -66,7 +67,7 @@ public class UpTab extends AbstractPage {
 
     public HomePage clickHomeBtn() {
        homeBtn.click();
-        HomePage homePage = new HomePage((RemoteWebDriver) driver);
+        HomePage homePage = new HomePage(driver);
         waitForJSToLoad();
         LOGGER.info("HomePage is opened : " + homePage.isHomePageOpen());
         return homePage;

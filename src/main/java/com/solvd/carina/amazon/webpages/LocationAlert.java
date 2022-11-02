@@ -2,6 +2,7 @@ package com.solvd.carina.amazon.webpages;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
@@ -22,7 +23,7 @@ private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.looku
     @FindBy(css = ".a-section.glow-toaster.glow-toaster-theme-default.glow-toaster-slot-default.nav-coreFlyout.nav-flyout")
     private ExtendedWebElement locationPopUp;
 
-    public LocationAlert(RemoteWebDriver driver) {
+    public LocationAlert(WebDriver driver) {
         super(driver);
     }
 

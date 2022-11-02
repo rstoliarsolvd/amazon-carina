@@ -2,6 +2,7 @@ package com.solvd.carina.amazon.webpages;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
@@ -32,7 +33,7 @@ public class FilterMenuPage extends AbstractPage {
     @FindBy(xpath = "//*[text()='Smart Pet | Smart Home']")
     private ExtendedWebElement titleSmartPet;
 
-    public FilterMenuPage(RemoteWebDriver driver) {
+    public FilterMenuPage(WebDriver driver) {
         super(driver);
     }
 
@@ -40,14 +41,14 @@ public class FilterMenuPage extends AbstractPage {
         assertElementPresent(smartHomeBtn);
         smartHomeBtn.click();
         waitForJSToLoad();
-        return new FilterMenuPage((RemoteWebDriver) driver);
+        return new FilterMenuPage(driver);
     }
 
     public FilterResultPage clickPetBtn() {
         assertElementPresent(petBtn);
         petBtn.click();
         waitForJSToLoad();
-        return new FilterResultPage((RemoteWebDriver) driver);
+        return new FilterResultPage(driver);
 
     }
 
@@ -69,7 +70,7 @@ public class FilterMenuPage extends AbstractPage {
         boolean isCloseFilterMenuBtnDisplayed = closeFilterMenuBtn.isElementPresent();
         waitForJSToLoad();
         LOGGER.info("closeFilterMenuBtn disappeared after clicking on it - " + !isCloseFilterMenuBtnDisplayed);
-        return new HomePage((RemoteWebDriver) driver);
+        return new HomePage(driver);
     }
 
     public ExtendedWebElement getCloseFilterMenuBtn() {

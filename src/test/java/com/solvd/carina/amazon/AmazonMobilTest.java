@@ -84,7 +84,7 @@ public class AmazonMobilTest extends AbstractMobilTest {
 
         //get driver and verify good page design. If not - then refresh
         HomePageBase homePage = initPage(driver, HomePageBase.class);  //for mobil
-        refreshPageIfWrongDesign((RemoteWebDriver) driver, homePage.isGoodDesire());
+        refreshPageIfWrongDesign( driver, homePage.isGoodDesire());
 
         //Input searched good and verify result for it
         UpTabBase upTab = initPage(driver, UpTabBase.class);    //for mobil

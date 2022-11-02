@@ -1,5 +1,6 @@
 package com.solvd.carina.amazon;
 
+import com.qaprosoft.carina.core.foundation.AbstractTest;
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.core.foundation.utils.tag.Priority;
@@ -16,7 +17,8 @@ import java.lang.invoke.MethodHandles;
  *
  * @author
  */
-public class SimpleTest extends AbstractMobilTest implements IAbstractTest{
+//public class SimpleTest extends AbstractMobilTest implements IAbstractTest{
+public class SimpleTest implements IAbstractTest{
 
         private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 

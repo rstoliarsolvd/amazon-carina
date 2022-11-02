@@ -3,6 +3,7 @@ package com.solvd.carina.amazon.webpages;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.solvd.carina.amazon.services.CheckMethods;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
@@ -22,7 +23,7 @@ public class FilterResultPage extends AbstractPage {
     @FindBy(xpath = "//span[@class='a-truncate-cut']")
     private List<ExtendedWebElement> goodsOfFilter;
 
-    public FilterResultPage(RemoteWebDriver driver) {
+    public FilterResultPage(WebDriver driver) {
         super(driver);
     }
 

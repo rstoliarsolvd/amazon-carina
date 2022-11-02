@@ -5,9 +5,7 @@ import com.qaprosoft.carina.core.foundation.utils.Configuration;
 import com.solvd.carina.amazon.constants.Const;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.PropertyConfigurator;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.Platform;
-import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -29,7 +27,7 @@ public class AbstractWebTest implements IAbstractTest{
             /**
      * For Selenium Standalone server //for parallel ran (multiThread)
      */
-    protected static ThreadLocal<RemoteWebDriver> driverT = new ThreadLocal<>();
+//    protected static ThreadLocal<RemoteWebDriver> driverT = new ThreadLocal<>();
 
     /**
      * For Selenium server
@@ -46,51 +44,51 @@ public class AbstractWebTest implements IAbstractTest{
      */
 //    @Parameters({"browser"})
 //    @BeforeMethod
-    protected static void setupDriver(String browser) throws Exception {
+//    protected static void setupDriver(String browser) throws Exception {
+//
+//        PropertyConfigurator.configure(Const.LOG4J_CONF_PATH);
+//
+///**
+// * For Selenium Standalone server
+// */
+//        RemoteWebDriver driver = null;
+//
+//        DesiredCapabilities cap = new DesiredCapabilities();
+//        Configuration.get(Configuration.Parameter.BROWSER);
+//
+//        if (browser.equals("chrome")) {
+//            cap.setPlatform(Platform.ANY);
+//            cap.setBrowserName("chrome");
+//            ChromeOptions options = new ChromeOptions();
+//            options.merge(cap);
+//        } else if (browser.equals("firefox")) {
+//            cap.setPlatform(Platform.ANY);
+//            cap.setBrowserName("firefox");
+//            FirefoxOptions options = new FirefoxOptions();
+//            options.merge(cap);
+//        } else if (browser.equals("safari")) {
+//            cap.setPlatform(Platform.ANY);
+//            cap.setBrowserName("safari");
+//            SafariOptions options = new SafariOptions();
+//            options.merge(cap);
+//        } else {
+//            System.out.println("Nothing");
+//        }
+//        driver = new RemoteWebDriver(new URL(Const.LOCAL_HOST), cap);
+////         ((AndroidDriver<?>) driver).activateApp("com.android.chrome");
+//
 
-        PropertyConfigurator.configure(Const.LOG4J_CONF_PATH);
-
-/**
- * For Selenium Standalone server
- */
-        RemoteWebDriver driver = null;
-
-        DesiredCapabilities cap = new DesiredCapabilities();
-        Configuration.get(Configuration.Parameter.BROWSER);
-
-        if (browser.equals("chrome")) {
-            cap.setPlatform(Platform.ANY);
-            cap.setBrowserName("chrome");
-            ChromeOptions options = new ChromeOptions();
-            options.merge(cap);
-        } else if (browser.equals("firefox")) {
-            cap.setPlatform(Platform.ANY);
-            cap.setBrowserName("firefox");
-            FirefoxOptions options = new FirefoxOptions();
-            options.merge(cap);
-        } else if (browser.equals("safari")) {
-            cap.setPlatform(Platform.ANY);
-            cap.setBrowserName("safari");
-            SafariOptions options = new SafariOptions();
-            options.merge(cap);
-        } else {
-            System.out.println("Nothing");
-        }
-        driver = new RemoteWebDriver(new URL(Const.LOCAL_HOST), cap);
-//         ((AndroidDriver<?>) driver).activateApp("com.android.chrome");
-
-
-/**
- * For Selenium Standalone server and for Selenium  server
- */
-//        System.setProperty("webdriver.chrome.driver", "/Users/rstoliar/IdeaProjects/chromedriver");
-//        WebDriver driver = new ChromeDriver();
-
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.get(Const.HOME_URL);
-        LOGGER.info("Start tests");
-        driverT.set(driver);
-    }
+///**
+// * For Selenium Standalone server and for Selenium  server
+// */
+////        System.setProperty("webdriver.chrome.driver", "/Users/rstoliar/IdeaProjects/chromedriver");
+////        WebDriver driver = new ChromeDriver();
+//
+//        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+//        driver.get(Const.HOME_URL);
+//        LOGGER.info("Start tests");
+//        driverT.set(driver);
+//    }
 
 
     /**
@@ -98,10 +96,10 @@ public class AbstractWebTest implements IAbstractTest{
      *
      * @param result
      */
-    public void screenShot(ITestResult result) {
+    public void screenShot(ITestResult result, WebDriver driver) {
         if (ITestResult.FAILURE == result.getStatus()) {
             try {
-                TakesScreenshot screenshot = (TakesScreenshot) driverT.get();
+                TakesScreenshot screenshot = (TakesScreenshot) driver;
                 File src = screenshot.getScreenshotAs(OutputType.FILE);
                 /**
                  * This block needed only for not re-writing screenshots
@@ -109,7 +107,7 @@ public class AbstractWebTest implements IAbstractTest{
 //                Date currentDate = new Date();
 //                String dataStr = currentDate.toString().replace(" ", "_").replace(":", "-");
 //                FileUtils.copyFile(src, new File(Const.SCREEN_SHOT_PATH + result.getName() + dataStr + ".png"));
-                FileUtils.copyFile(src, new File(Const.SCREEN_SHOT_PATH + result.getName() + "-" + driverT.get().getCapabilities().getBrowserName() + ".png"));
+                FileUtils.copyFile(src, new File(Const.SCREEN_SHOT_PATH + result.getName() + "-" + ((HasCapabilities)getDriver()).getCapabilities().getBrowserName() + ".png"));
                 LOGGER.info("Successfully captured a screenshot");
             } catch (Exception e) {
                 LOGGER.info("Exception while taking screenshot " + e.getMessage());
@@ -119,19 +117,19 @@ public class AbstractWebTest implements IAbstractTest{
     }
 
     @AfterMethod
-    public void setUpCloseAndScreenshotFail(ITestResult result) {
-        screenShot(result);
-        finishSetup();
+    public void setUpCloseAndScreenshotFail(ITestResult result, WebDriver driver) {
+        screenShot(result, driver);
+//        finishSetup();
     }
 
 
-    public void finishSetup() {
-        LOGGER.info("Tests finished");
-        if (driverT.get() != null) {
-            driverT.get().quit();
-            driverT.set(null);
-        }
-    }
+//    public void finishSetup() {
+//        LOGGER.info("Tests finished");
+//        if (driverT.get() != null) {
+//            driverT.get().quit();
+//            driverT.set(null);
+//        }
+//    }
 
 
     /**
@@ -158,7 +156,7 @@ public class AbstractWebTest implements IAbstractTest{
 //            }
 //        }
 
-    public void refreshPageIfWrongDesign(RemoteWebDriver driver, boolean isGoodDesire) {
+    public void refreshPageIfWrongDesign(WebDriver driver, boolean isGoodDesire) {
         if (!isGoodDesire) {
             driver.navigate().refresh();
         }

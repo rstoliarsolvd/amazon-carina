@@ -17,7 +17,10 @@ public class ResultsPage extends ResultsPageBase {
 
     private static final Logger LOGGER = Logger.getLogger(ResultsPage.class);
 
-    @FindBy(xpath = "//*[contains(@class, 's-main-slot')]//*[contains(@class, 's-title-instructions-style')]")
+//    @FindBy(xpath = "//*[contains(@class, 's-main-slot')]//*[contains(@class, 's-title-instructions-style')]")
+//    @FindBy(xpath = "//div[@class='sg-col-inner']")  // for mobil
+//    @FindBy(xpath = "//div[@class='s-result-item s-asin AdHolder sg-col sg-col-12-of-12 s-widget-spacing-small']")  // for mobil
+    @FindBy(xpath = "//div[@class='s-result-item s-asin AdHolder sg-col sg-col-12-of-12 s-widget-spacing-small']//span[@class='a-size-small a-color-base a-text-normal']")  // for mobil
     private List<ExtendedWebElement> goodsResult;
 
     public ResultsPage(WebDriver driver) {

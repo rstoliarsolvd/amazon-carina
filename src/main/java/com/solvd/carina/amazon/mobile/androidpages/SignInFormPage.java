@@ -13,16 +13,19 @@ public class SignInFormPage extends SignInFormPageBase {
 
     private static final Logger LOGGER = Logger.getLogger(SignInFormPage.class);
 
-    @FindBy(xpath = "//h1")
+    @FindBy(xpath = "//h2")
     private ExtendedWebElement header;
 
-    @FindBy(xpath = "//a[@class='a-link-nav-icon']")
+//    @FindBy(xpath = "//a[@class='a-link-nav-icon']")
+    @FindBy(xpath = "//span[@class='nav-sprite nav-logo-base']")  //for mobil
     private ExtendedWebElement homeBtn;
 
-    @FindBy(xpath = "//*[@aria-label='Amazon']")
+//    @FindBy(xpath = "//*[@aria-label='Amazon']")
+    @FindBy(xpath = "//span[@class='nav-sprite nav-logo-base']")  //for mobil
     private ExtendedWebElement homeBtn1;
 
-    private String titleName = "Sign in";
+//    private String titleName = "Sign in";
+    private String titleName = "Welcome";
 
     public SignInFormPage(WebDriver driver) {
         super(driver);
@@ -32,19 +35,16 @@ public class SignInFormPage extends SignInFormPageBase {
     public boolean isHeaderSignIn() {
         String headerText = header.getText();
         boolean isHeaderGood = headerText.equals(titleName);
-        LOGGER.info("Verifying the header of window (that is - " + headerText + ") have title - 'Sign in' . This is - " + isHeaderGood);
+        LOGGER.info("Verifying the header of window (that is - " + headerText + ") have title - 'Welcome' . This is - " + isHeaderGood);
         return isHeaderGood;
     }
 
     @Override
     public void clickHomeBtn() {
         if (homeBtn.isPresent()) {
-            homeBtn.click();
-        } else if (homeBtn1.isPresent()) {
-            homeBtn1.click();
-        }
+            homeBtn.click();}
         HomePage homePage = initPage(driver,HomePage.class);
         waitForJSToLoad();
-        LOGGER.info("click Home-Btn. And HomePage is open - " + homePage.isHomePageOpen());
+        LOGGER.info("click Home-Btn. And HomePage is open - " + homePage.isPageOpened());
     }
 }
