@@ -21,6 +21,9 @@ public class UpTab extends AbstractPage {
     @FindBy(xpath = "//*[@id='twotabsearchtextbox']")
     private ExtendedWebElement searchField;
 
+    @FindBy(xpath = "//*[@id='twotabsearchtextbox']")
+    private ExtendedWebElement uiLoadedMarker;
+
     @FindBy(xpath = "//div[@class='a-box-inner a-padding-extra-large']")
     private ExtendedWebElement signInBlock;
 
@@ -32,6 +35,7 @@ public class UpTab extends AbstractPage {
 
     public UpTab(WebDriver driver) {
         super(driver);
+        setUiLoadedMarker(uiLoadedMarker);
     }
 
     public SignInFormPage clickSignInBtn() {
@@ -57,7 +61,7 @@ public class UpTab extends AbstractPage {
 //    public ResultsPage inputTextInSearchField(String searchItem) {
 //       searchField.sendKeys(Keys.valueOf(searchItem));
 //       searchBtn.click();
-//       return new ResultsPage((RemoteWebDriver) driver);
+//       return new ResultsPage(driver);
 //    }
 
     public ResultsPage findItem(String searchItem) {

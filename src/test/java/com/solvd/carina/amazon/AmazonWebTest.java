@@ -86,7 +86,7 @@ public class AmazonWebTest extends AbstractWebTest {
          * Next raw for run test on another browser (firefox)
          */
 //        R.CONFIG.put(Configuration.Parameter.BROWSER.getKey(), "firefox", true);
-        R.CONFIG.put("capabilities.browserName", "firefox", true);
+//        R.CONFIG.put("capabilities.browserName", "firefox", true); //better one
 
         //Driver initialisation
         WebDriver driver = getDriver();
@@ -112,12 +112,11 @@ public class AmazonWebTest extends AbstractWebTest {
         Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
     }
 
-    //    @Test(retryAnalyzer = RetryTestRunAttempts.class)
-//    @TestRailCases(testCasesId = "113", suiteId = "N1")
+    //    @TestRailCases(testCasesId = "113", suiteId = "N1")
     @Test(description = "Verify all goods provided after press 'TodaysDeals'-button have discount",
             retryAnalyzer = RetryTestRunAttempts.class)
     @MethodOwner(owner = "rstoliar", platform = "web")
-    @TestPriority(Priority.P1)
+    @TestPriority(Priority.P0)
     @TestLabel(name = "feature", value = {"web", "regression"})
 
     public void verifyTodayDealsOption() {
@@ -205,10 +204,11 @@ public class AmazonWebTest extends AbstractWebTest {
     }
 
     //    @TestRailCases(testCasesId = "115", suiteId = "N1")
-    @Test(dataProvider = "browser",
+    @Test(
+            dataProvider = "browser",
             description = "Verify that after press 'Close'-button on choosing filter options, all filter options are closed and Home-page is open",
             retryAnalyzer = RetryTestRunAttempts.class)
-    @MethodOwner(owner = "rstoliar", platform = "web")
+    @MethodOwner(owner = "ru", platform = "web")
     @TestPriority(Priority.P1)
     @TestLabel(name = "feature", value = {"web", "regression"})
 

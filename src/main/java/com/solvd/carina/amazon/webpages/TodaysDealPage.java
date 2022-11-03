@@ -51,11 +51,6 @@ private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.looku
         return areGoodDealsPresent;
     }
 
-//    public boolean ifTDPageIsOpen() {
-//        waitForJSToLoad();
-//        return areGoodsHaveDiscount();
-//    }
-
     public List<String> goodsTitleDiscountsList() {
         return discountGoods.stream()
                 .map(ExtendedWebElement::getText)

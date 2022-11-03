@@ -20,8 +20,12 @@ public class ResultsPage extends AbstractPage {
     @FindBy(xpath = "//*[contains(@class, 's-main-slot')]//*[contains(@class, 's-title-instructions-style')]")
     private List<ExtendedWebElement> goodsResult;
 
+    @FindBy(xpath = "//span[@data-component-id='13']")
+    private ExtendedWebElement uiLoadedMarker;
+
     public ResultsPage(WebDriver driver) {
         super(driver);
+        setUiLoadedMarker(uiLoadedMarker);
     }
 
     public List<String> goodsTitles() {

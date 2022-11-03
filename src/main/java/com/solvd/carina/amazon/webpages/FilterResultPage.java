@@ -4,7 +4,6 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.solvd.carina.amazon.services.CheckMethods;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,11 +19,15 @@ public class FilterResultPage extends AbstractPage {
     @FindBy(xpath = "//*[text()='Smart Pet | Smart Home']")
     private ExtendedWebElement titleSmartPet;
 
+    @FindBy(xpath = "//div[@id='s-refinements']")
+    private ExtendedWebElement uiLoadedMarker;
+
     @FindBy(xpath = "//span[@class='a-truncate-cut']")
     private List<ExtendedWebElement> goodsOfFilter;
 
     public FilterResultPage(WebDriver driver) {
         super(driver);
+        setUiLoadedMarker(uiLoadedMarker);
     }
 
     public boolean isTitleOnFilterResultPageWithPet() {

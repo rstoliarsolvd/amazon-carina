@@ -29,22 +29,15 @@ private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.looku
     @FindBy(xpath = "//*[@id='nav-main']")
     ExtendedWebElement goodDesignLocator;
 
+    @FindBy(xpath = "//*[@id='nav-main']")
+    ExtendedWebElement uiLoadedMarker;
+
     public HomePage(WebDriver driver) {
         super(driver);
-//        setPageURL("http://amazon.com");
+        setUiLoadedMarker(uiLoadedMarker);
         setPageURL(HOME_URL);
-//        setPageURL(HOME_LOGO_URL);
+        setPageURL(HOME_LOGO_URL);
     }
-
-//    public boolean isHomePageOpen() {
-//        waitForJSToLoad();
-//        FilterMenuPage filterMenuPage = new FilterMenuPage(driver);
-//        boolean isHomePageOpened = driver.getCurrentUrl().equals(R.CONFIG.get("url"))
-//                || driver.getCurrentUrl().equals(R.CONFIG.get("url_logo"))
-//                || desktopCardLayout.isElementPresent();
-//        LOGGER.info("Verifying Home-page is opened: " + isHomePageOpened);
-//        return isHomePageOpened;
-//    }
 
     public ExtendedWebElement getHomePageWebElement() {
         return desktopCardLayout;

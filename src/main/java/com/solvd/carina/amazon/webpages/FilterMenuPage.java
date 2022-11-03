@@ -3,8 +3,8 @@ package com.solvd.carina.amazon.webpages;
 import com.qaprosoft.carina.core.foundation.utils.Configuration;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
+import com.solvd.carina.amazon.constants.Const;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,7 +40,7 @@ public class FilterMenuPage extends AbstractPage {
     public FilterMenuPage(WebDriver driver) {
         super(driver);
         setUiLoadedMarker(uiLoaderMarker);
-        setPageURL(Configuration.get(Configuration.Parameter.URL));
+        setPageURL(Const.HOME_LOGO_URL);
     }
 
     public FilterMenuPage clickSmartHomeBtn() {
@@ -57,11 +57,6 @@ public class FilterMenuPage extends AbstractPage {
         return new FilterResultPage(driver);
 
     }
-
-//    public boolean isFMPageOpen() {
-//        waitForJSToLoad();
-//        return closeFilterMenuBtn.isElementPresent() || filterBlock.isElementPresent();
-//    }
 
     public boolean isSmartTitlePresent() {
         waitForJSToLoad();

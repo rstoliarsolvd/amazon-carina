@@ -35,13 +35,6 @@ private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.looku
         setPageURL(Const.SIGNIN_URL);
     }
 
-//    public boolean isHeaderSignIn() {
-//        String headerText = header.getText();
-//        boolean isHeaderGood = headerText.equals(titleName);
-//        LOGGER.info("Verifying the header of window (that is - " + headerText + ") have title - 'Sign in' . This is - " + isHeaderGood);
-//        return isHeaderGood;
-//    }
-
     public void clickHomeBtn() {
         if (homeBtn.isPresent()) {
             homeBtn.click();
@@ -51,6 +44,5 @@ private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.looku
         HomePage homePage = new HomePage( driver);
         waitForJSToLoad();
         LOGGER.info("click Home-Btn. And HomePage is open - " + homePage.isPageOpened());
-
     }
 }
