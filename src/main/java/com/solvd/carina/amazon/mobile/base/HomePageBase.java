@@ -14,7 +14,7 @@ public abstract class HomePageBase extends AbstractPage {
 
     public abstract boolean isHomePageOpen();
 
-    public abstract ExtendedWebElement getHomePageWebElement();
+//    public abstract ExtendedWebElement getHomePageWebElement();
 
     public abstract boolean isGoodDesire();
 

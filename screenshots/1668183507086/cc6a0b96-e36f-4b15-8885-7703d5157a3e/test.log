@@ -1,0 +1,14 @@
+[2022-11-11 04:18:28] [1] [WARN] Reporting disabled: using no op test run registrar
+[2022-11-11 04:18:28] [1] [INFO] TEST [amazon-carina - verifyFilterTest] STARTED at [19:18:28 2022-11-11]
+[2022-11-11 04:18:28] [1] [INFO] Starting driver session...
+[2022-11-11 04:18:48] [1] [INFO] Driver session started.
+[2022-11-11 04:18:48] [1] [INFO] INFO: opening url 'https://www.amazon.com/'
+[2022-11-11 04:18:51] [1] [INFO] INFO: url 'https://www.amazon.com/' is opened.
+[2022-11-11 04:18:56] [1] [INFO] PASS: element 'filterMenuBtn' is clicked.
+[2022-11-11 04:18:59] [1] [INFO] PASS: element 'seeAllBtn' is clicked.
+[2022-11-11 04:19:00] [1] [INFO] PASS: element 'amazonMusicBtn' is clicked.
+[2022-11-11 04:19:00] [1] [INFO] Verifying 'Smart Home' Presence on title of page : true
+[2022-11-11 04:19:04] [1] [INFO] PASS: element 'freeStreamingMusicBtn' is clicked.
+[2022-11-11 04:19:08] [1] [INFO] PASS: element 'homeBtn' is clicked.
+[2022-11-11 04:19:08] [1] [INFO] Verifying Home-page is opened: true
+[2022-11-11 04:19:09] [1] [INFO] TEST [amazon-carina - verifyFilterTest] PASSED at [19:19:09 2022-11-11]

@@ -11,17 +11,22 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = UpTabBase.class)
 public class UpTab extends UpTabBase {
 
     private static final Logger LOGGER = Logger.getLogger(UpTab.class);
 
-    @FindBy(id = "nav-link-accountList-nav-line-1")
-    private ExtendedWebElement signInBtn;
 
-    @FindBy(xpath = "//*[@id='twotabsearchtextbox']")
+@FindBy(xpath = "//div[@id='nav-progressive-greeting']")
+private ExtendedWebElement signInBtn;
+
+    @FindBy(xpath = "//*[@id='nav-search-keywords']")
     private ExtendedWebElement searchField;
+
+ @FindBy(xpath = "//input[@nav-input nav-progressive-attribute']")
+    private ExtendedWebElement searchField1;
 
     @FindBy(xpath = "//div[@class='a-box-inner a-padding-extra-large']")
     private ExtendedWebElement signInBlock;
@@ -32,8 +37,11 @@ public class UpTab extends UpTabBase {
     @FindBy(id = "nav-logo-sprites")
     private ExtendedWebElement uiLoadedMarker;
 
-    @FindBy(xpath = "//input[@id='nav-search-submit-button']")
+    @FindBy(xpath = "//form[@id='nav-search-form']//*[@type='submit']")
     private ExtendedWebElement searchBtn;
+
+    @FindBy(xpath = "//*[@resource-id=\"outer-accordion-signin-signup-page\"]/android.view.View[1]")
+    private ExtendedWebElement headerSign;
 
     public UpTab(WebDriver driver) {
         super(driver);
@@ -42,20 +50,22 @@ public class UpTab extends UpTabBase {
 
     @Override
     public SignInFormPageBase clickSignInBtn() {
-        signInBtn.clickIfPresent();
+
+        signInBtn.click();
         waitForJSToLoad();
-        return initPage(driver, SignInFormPage.class);
+        return initPage(driver, SignInFormPageBase.class);
     }
 
     @Override
     public void clickSearchField() {
-        searchField.clickIfPresent();
+//        searchField.clickIfPresent();
+        searchField.click();
     }
 
     @Override
     public ResultsPageBase inputTextInSearchField(String searchItem) {
         searchField.getElement().sendKeys(searchItem, Keys.ENTER);
-        return initPage(driver, ResultsPage.class);
+        return initPage(driver, ResultsPageBase.class);
     }
 
     /**
@@ -80,7 +90,7 @@ public class UpTab extends UpTabBase {
     @Override
     public HomePageBase clickHomeBtn() {
         homeBtn.click();
-        HomePageBase homePage = initPage(driver,HomePage.class);
+        HomePageBase homePage = initPage(driver,HomePageBase.class);
         waitForJSToLoad();
         LOGGER.info("HomePage is opened : " + homePage.isHomePageOpen());
         return initPage(HomePageBase.class);

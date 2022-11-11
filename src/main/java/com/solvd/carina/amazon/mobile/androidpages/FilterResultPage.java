@@ -19,6 +19,8 @@ public class FilterResultPage extends FilterResultPageBase {
 
     @FindBy(xpath = "//*[text()='Smart Pet | Smart Home']")
     private ExtendedWebElement titleSmartPet;
+    @FindBy(xpath = "//*[contains(@class,'color-black font_Sharp_Grotesk_Pan_Euro_Bold_20 mobilePortrait align-center')]")
+    private ExtendedWebElement freeStreamingMusicTitle;
 
     @FindBy(xpath = "//span[@class='a-truncate-cut']")
     private List<ExtendedWebElement> goodsOfFilter;
@@ -28,10 +30,10 @@ public class FilterResultPage extends FilterResultPageBase {
     }
 
     @Override
-    public boolean isTitleOnFilterResultPageWithPet() {
-        boolean isTitleSmartPetDisplayed = titleSmartPet.isPresent();
-        LOGGER.info("Verifying if title with 'Smart Home' and 'Pet' Present. : " + isTitleSmartPetDisplayed);
-        return isTitleSmartPetDisplayed;
+    public boolean isTitleOnFilterResultPageWithFreeStreamingMusic() {
+        boolean isTitleFreeStreamingDisplayed = freeStreamingMusicTitle.isPresent();
+        LOGGER.info("Verifying if title with 'Free Streaming music' Present. : " + isTitleFreeStreamingDisplayed);
+        return isTitleFreeStreamingDisplayed;
     }
 
     @Override

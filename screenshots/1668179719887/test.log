@@ -1,0 +1,31 @@
+[2022-11-11 03:15:19] [1] [INFO] 
+============= Test configuration =============
+url=https://www.amazon.com/
+env=TEST
+selenium_url=http://localhost:4723/wd/hub
+auto_screenshot=false
+error_screenshot=true
+project_report_directory=./screenshots
+max_screen_history=10
+selenium_url=http://localhost:4723/wd/hub
+
+------------- Driver capabilities -----------
+capabilities.deviceName=Pixel 5 API 32
+capabilities.automationName=uiautomator2
+capabilities.platform=ANDROID
+capabilities.browserName=chrome
+capabilities.platformName=ANDROID
+capabilities.deviceType=emulator
+capabilities.udid=emulator-5554
+================================================
+
+[2022-11-11 03:15:20] [1] [WARN] Reporting disabled: using no op test run registrar
+[2022-11-11 03:15:20] [1] [INFO] Reflections took 807 ms to scan 11 urls, producing 2605 keys and 12699 values 
+[2022-11-11 03:15:21] [1] [INFO] [TestNG] Running:
+  /Users/rstoliar/Library/Caches/JetBrains/IdeaIC2021.3/temp-testng-customsuite.xml
+
+[2022-11-11 03:15:21] [1] [INFO] Set thread-count=1
+[2022-11-11 03:15:21] [1] [INFO] Set data-provider-thread-count=1
+[2022-11-11 03:15:21] [1] [INFO] CARINA_CORE_VERSION: 7.4.26
+[2022-11-11 03:15:56] [1] [INFO] INFO: '**************** Test execution summary ****************'.
+[2022-11-11 03:15:56] [1] [INFO] RESULT #1: TEST [amazon-carina - verifyFilterTest] FAIL [screenshots=file:///Users/rstoliar/IdeaProjects/AmazonCarinaTask/amazon-carina/./screenshots/1668179719887/27bcadfe-4a39-41e6-9d94-66744040e62b/report.html | log=file:///Users/rstoliar/IdeaProjects/AmazonCarinaTask/amazon-carina/./screenshots/1668179719887/27bcadfe-4a39-41e6-9d94-66744040e62b/test.log]

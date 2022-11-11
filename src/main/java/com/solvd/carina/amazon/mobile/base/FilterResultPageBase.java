@@ -2,7 +2,6 @@ package com.solvd.carina.amazon.mobile.base;
 
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.util.List;
 
@@ -12,7 +11,7 @@ public abstract class FilterResultPageBase extends AbstractPage {
         super(driver);
     }
 
-    public abstract boolean isTitleOnFilterResultPageWithPet();
+    public abstract boolean isTitleOnFilterResultPageWithFreeStreamingMusic();
 
     public abstract List<String> getGoodsTitlesList();
 

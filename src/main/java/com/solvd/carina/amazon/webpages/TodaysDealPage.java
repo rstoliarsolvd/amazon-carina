@@ -5,6 +5,7 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.solvd.carina.amazon.constants.Const;
 import com.solvd.carina.amazon.services.CheckMethods;
+import com.solvd.carina.amazon.webpages.components.DealsCards;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -31,6 +32,11 @@ private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.looku
 
     @FindBy(xpath = "//*[@class='Grid-module__gridDisplayGrid_2X7cDTY7pjoTwwvSRQbt9Y']//div[contains(@class,'DealGridItem-module__withoutActionButton_2OI8DAanWNRCagYDL2iIqN')]")
     private List<ExtendedWebElement> discountGoods;
+
+//    @FindBy(xpath = "//*[@class='Grid-module__gridDisplayGrid_2X7cDTY7pjoTwwvSRQbt9Y']")
+    @FindBy(xpath = "//div[@class ='Grid-module__gridDisplayGrid_2X7cDTY7pjoTwwvSRQbt9Y']")
+    private DealsCards discountGoodsBlock;
+
 
     @FindBy(xpath = "//div[@aria-label='Watch now']")
     private ExtendedWebElement watchNow;
@@ -63,5 +69,9 @@ private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.looku
         boolean areTheseGoodsOnDiscounts = CheckMethods.isElementsPresentInList(discGoods, 8, discounts);
         LOGGER.info("Verifying that all goods have at least one feature of discount: " + areTheseGoodsOnDiscounts);
         return areTheseGoodsOnDiscounts;
+    }
+
+    public DealsCards getDiscountGoodsBlock() {
+        return discountGoodsBlock;
     }
 }

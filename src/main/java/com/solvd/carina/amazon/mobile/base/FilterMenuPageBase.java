@@ -3,7 +3,6 @@ package com.solvd.carina.amazon.mobile.base;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.RemoteWebDriver;
 
 public abstract class FilterMenuPageBase extends AbstractPage {
 
@@ -12,13 +11,15 @@ public abstract class FilterMenuPageBase extends AbstractPage {
         super(driver);
     }
 
-    public abstract FilterMenuPageBase clickSmartHomeBtn();
+    public abstract FilterMenuPageBase clickSeeAllBtn();
 
-    public abstract FilterResultPageBase clickPetBtn();
+    public abstract FilterMenuPageBase clickAmazonMusicBtn();
+
+    public abstract FilterResultPageBase clickFreeStreamingMusicBtn();
 
     public abstract boolean isFMPageOpen();
 
-    public abstract boolean isSmartTitlePresent();
+    public abstract boolean isAmazonMusicTitlePresent();
 
     public abstract HomePageBase clickCloseBtn();
 

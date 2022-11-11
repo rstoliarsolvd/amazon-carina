@@ -54,7 +54,6 @@ public class AmazonWebTest extends AbstractWebTest {
         //get driver and verify good page design. If not - then refresh
         HomePage homePage = new HomePage(driver);
         homePage.open();
-
         refreshPageIfWrongDesign(driver, homePage.isGoodDesire());
 
         //press on signIn btn and verify signIn page is open
@@ -150,6 +149,7 @@ public class AmazonWebTest extends AbstractWebTest {
         TodaysDealPage todaysDealPage = menuTab.clickTodaysDealsBtn();
         Assert.assertTrue(todaysDealPage.isPageOpened(), "No Today's Deals page is open");
         Assert.assertTrue(todaysDealPage.areGoodsHaveDiscount(), "Not All goods have discounts");
+//        todaysDealPage.getDiscountGoodsBlock().getTe
 
         //back to home page
         NavigationServiceWeb.goHome(driver);

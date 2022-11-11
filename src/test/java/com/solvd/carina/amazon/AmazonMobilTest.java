@@ -1,6 +1,5 @@
 package com.solvd.carina.amazon;
 
-import com.qaprosoft.carina.core.foundation.utils.Configuration;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.core.foundation.utils.tag.Priority;
 import com.qaprosoft.carina.core.foundation.utils.tag.TestPriority;
@@ -11,7 +10,6 @@ import com.zebrunner.agent.core.annotation.TestLabel;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.HasCapabilities;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -28,17 +26,26 @@ public class AmazonMobilTest extends AbstractMobilTest {
     }
 
     //    @TestRailCases(testCasesId = "111", suiteId = "N1")
-    @Test(dataProvider = "browser",
+    @Test(
+//            dataProvider = "browser",
             description = "Verify if 'SignIn'-form appeared after 'SignIn'-button click on UpTab")
     @MethodOwner(owner = "rstoliar", platform = "web")
     @TestPriority(Priority.P1)
     @TestLabel(name = "feature", value = {"web", "regression"})
-    public void verifySignInFormAppearedTest(String browser) throws Exception {
+//    public void verifySignInFormAppearedTest(String browser) throws Exception {
+    public void verifySignInFormAppearedTest() throws Exception {
 
         //Driver initialisation (all from dataProvider)
 //        AbstractTest.setupDriver(browser);
         //get driver
+
         WebDriver driver = getDriver();
+        /**
+         * next two raws needed for ios only
+         */
+//        ServiceForStartTestOnIos sfs = new ServiceForStartTestOnIos();
+//        sfs.launchApp();
+
 
         //Output info about thread number and browser name
         LOGGER.info("verifySignInFormAppearedTest Thread.currentThread().getId() = " + Thread.currentThread().getId());
@@ -46,15 +53,13 @@ public class AmazonMobilTest extends AbstractMobilTest {
 
         //get driver verify good page design. If not - then refresh
         HomePageBase homePage = initPage(driver, HomePageBase.class);  //for mobil
-
+        homePage.open();
         refreshPageIfWrongDesign(driver, homePage.isGoodDesire());
-
+        Assert.assertTrue(homePage.isHomePageOpen(), "Home page is not opened");
         //press on signIn btn and verify signIn page is open
         UpTabBase upTab = initPage(driver, UpTabBase.class);    //for mobil
-
         SignInFormPageBase signInFormPage = upTab.clickSignInBtn();
         Assert.assertTrue(signInFormPage.isHeaderSignIn(), "Header on opened page is not 'Sign in'");
-
         //back to home page
         signInFormPage.clickHomeBtn();
     }
@@ -83,8 +88,9 @@ public class AmazonMobilTest extends AbstractMobilTest {
         LOGGER.info("This test is running on browser - " + ((HasCapabilities) driver).getCapabilities().getBrowserName());
 
         //get driver and verify good page design. If not - then refresh
-        HomePageBase homePage = initPage(driver, HomePageBase.class);  //for mobil
-        refreshPageIfWrongDesign( driver, homePage.isGoodDesire());
+        HomePageBase homePage = initPage(driver, HomePageBase.class);
+        homePage.open();
+//        refreshPageIfWrongDesign(driver, homePage.isGoodDesire());
 
         //Input searched good and verify result for it
         UpTabBase upTab = initPage(driver, UpTabBase.class);    //for mobil
@@ -125,8 +131,8 @@ public class AmazonMobilTest extends AbstractMobilTest {
         //Verify LocationAlert. If it is presented, then close it.
         LocationAlertBase lAlert = initPage(driver, LocationAlertBase.class);  //for mobil
 
-        lAlert.verifyAlert();
-        Assert.assertTrue(lAlert.isPageOpened());
+//        lAlert.verifyAlert();
+//        Assert.assertTrue(lAlert.isPageOpened());
 
         //Press TodaysDeals and verify all goods have discounts on opened page
         MenuTabBase menuTab = initPage(driver, MenuTabBase.class);  //for mobil
@@ -134,9 +140,9 @@ public class AmazonMobilTest extends AbstractMobilTest {
 
         TodaysDealPageBase todaysDealPage = menuTab.clickTodaysDealsBtn();
         todaysDealPage.open();
-        Assert.assertTrue(todaysDealPage.isPageOpened());
+//        Assert.assertTrue(todaysDealPage.isPageOpened());
 
-        Assert.assertTrue(todaysDealPage.ifTDPageIsOpen(), "No Today's Deals page is open");
+        Assert.assertTrue(todaysDealPage.isPageOpened(), "No Today's Deals page is open");
         Assert.assertTrue(todaysDealPage.areGoodsHaveDiscount(), "Not All goods have discounts");
 
         //back to home page
@@ -167,7 +173,8 @@ public class AmazonMobilTest extends AbstractMobilTest {
         String pet = "pet";
 
         //get driver and verify good page design. If not - then refresh
-        HomePageBase homePage = initPage(driver, HomePageBase.class);  //for mobil
+        HomePageBase homePage = initPage(driver, HomePageBase.class);
+        homePage.open();
         refreshPageIfWrongDesign(driver, homePage.isGoodDesire());
 
         //Open filter capabilities
@@ -175,14 +182,15 @@ public class AmazonMobilTest extends AbstractMobilTest {
         FilterMenuPageBase filterMenuPage = menuTab.clickFilterMenuBtn();
 
         //Choose position of first level filter menu and verify its name present in title on appeared second level filter menu(or result page)
-        filterMenuPage = filterMenuPage.clickSmartHomeBtn();
-        Assert.assertTrue(filterMenuPage.isFMPageOpen(), "Filter menu page is not open");
-        Assert.assertTrue(filterMenuPage.isSmartTitlePresent(), "Filter menu page do not contain the needed title of menu block");
+        filterMenuPage = filterMenuPage.clickSeeAllBtn();
+        filterMenuPage = filterMenuPage.clickAmazonMusicBtn();
+//        Assert.assertTrue(filterMenuPage.isFMPageOpen(), "Filter menu page is not open");
+        Assert.assertTrue(filterMenuPage.isAmazonMusicTitlePresent(), "Filter menu page do not contain the needed title of menu block");
 
         //Choose position of second level filter menu and verify its name present in title on appeared result page
-        FilterResultPageBase filterResultPage = filterMenuPage.clickPetBtn();
-        Assert.assertTrue(filterResultPage.isTitleOnFilterResultPageWithPet(), " No 'Pet' title is displayed");
-        Assert.assertTrue(filterResultPage.areAllGoodsTitleContainsSearchItem(pet), "No 'Pet' in title on filter result page present");
+        FilterResultPageBase filterResultPage = filterMenuPage.clickFreeStreamingMusicBtn();
+        Assert.assertTrue(filterResultPage.isTitleOnFilterResultPageWithFreeStreamingMusic(), " No 'Free streaming' title is displayed");
+//        Assert.assertTrue(filterResultPage.areAllGoodsTitleContainsSearchItem(pet), "No 'Pet' in title on filter result page present");
 
         //back to home page
         UpTabBase upTab = initPage(driver, UpTabBase.class);
@@ -208,7 +216,8 @@ public class AmazonMobilTest extends AbstractMobilTest {
         LOGGER.info("This test is running on browser - " + ((HasCapabilities) driver).getCapabilities().getBrowserName());
 
         //get driver and verify good page design. If not - then refresh
-        HomePageBase homePage = initPage(driver, HomePageBase.class);  //for mobil
+        HomePageBase homePage = initPage(driver, HomePageBase.class);
+        homePage.open();
         refreshPageIfWrongDesign(driver, homePage.isGoodDesire());
 
         //Open filter capabilities and verify that filter capabilities are shown
