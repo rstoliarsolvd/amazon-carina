@@ -189,6 +189,7 @@ public class AmazonMobilTest extends AbstractMobilTest {
 
         //Choose position of second level filter menu and verify its name present in title on appeared result page
         FilterResultPageBase filterResultPage = filterMenuPage.clickFreeStreamingMusicBtn();
+
         Assert.assertTrue(filterResultPage.isTitleOnFilterResultPageWithFreeStreamingMusic(), " No 'Free streaming' title is displayed");
 //        Assert.assertTrue(filterResultPage.areAllGoodsTitleContainsSearchItem(pet), "No 'Pet' in title on filter result page present");
 
@@ -198,14 +199,16 @@ public class AmazonMobilTest extends AbstractMobilTest {
     }
 
     //    @TestRailCases(testCasesId = "115", suiteId = "N1")
-    @Test(dataProvider = "browser",
+    @Test(
+//            dataProvider = "browser",
             description = "Verify that after press 'Close'-button on choosing filter options, all filter options are closed and Home-page is open",
             retryAnalyzer = RetryTestRunAttempts.class)
     @MethodOwner(owner = "rstoliar", platform = "web")
     @TestPriority(Priority.P1)
     @TestLabel(name = "feature", value = {"web", "regression"})
 
-    public void verifyFilterMenuCloseBtn(String browser) throws Exception {
+//    public void verifyFilterMenuCloseBtn(String browser) throws Exception {
+    public void verifyFilterMenuCloseBtn() throws Exception {
 
         //Driver initialisation (all from dataProvider)
 //        AbstractTest.setupDriver(browser);

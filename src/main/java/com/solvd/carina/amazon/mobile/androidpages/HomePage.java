@@ -3,11 +3,9 @@ package com.solvd.carina.amazon.mobile.androidpages;
 import com.qaprosoft.carina.core.foundation.utils.Configuration;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.solvd.carina.amazon.mobile.base.FilterMenuPageBase;
-import com.solvd.carina.amazon.mobile.base.HomePageBase;
 import com.solvd.carina.amazon.constants.Const;
+import com.solvd.carina.amazon.mobile.base.HomePageBase;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -21,26 +19,17 @@ public class HomePage extends HomePageBase {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-    @FindBy(xpath = "//div[@id='gwm-Deck-cf']")   //for mobil
+    @FindBy(xpath = "//div[@class='gwm-dashboard-wrapper']") //browser
     private ExtendedWebElement desktopCardLayout;
 
-//    @FindBy(xpath = "//header[@id=\"nav-main\"]")
-    @FindBy(xpath = "//div[@id=\"gwm-dashboard\"]")
+    @FindBy(xpath = "//div[@class='nav-gwbar-single-row nav-genz nav-gwbar-white nav-gwbar-scroll']")//browser
     private ExtendedWebElement goodDesignLocator;
 
-    @FindBy(xpath = "//a[@id=\"intlDeals\"]")
+    @FindBy(xpath = "//a[@id='intlDeals']")//browse
     private ExtendedWebElement todaysDealsLocator;
-
-    @FindBy(xpath = "//android.view.View[@content-desc=\"Deals\"]/android.widget.TextView")
-    private ExtendedWebElement todaysDealsLocator1;
-
-    //    @FindBy(xpath = "//*[@id='nav-main']")
-    @FindBy(xpath = "//div[@id=\"nav-gwbar\"]")
-    private ExtendedWebElement uiLoaderMarker;
 
     public HomePage(WebDriver driver) {
         super(driver);
-//        setUiLoadedMarker(uiLoaderMarker);
         setPageURL(Configuration.get(Configuration.Parameter.URL));
     }
 
@@ -54,15 +43,9 @@ public class HomePage extends HomePageBase {
         return isHomePageOpened;
     }
 
-//    @Override
-//    public ExtendedWebElement getHomePageWebElement() {
-//        return desktopCardLayout;
-//    }
-
     @Override
-    public boolean isGoodDesire(){
-
-        new WebDriverWait(getDriver(),5).until(ExpectedConditions.visibilityOf(goodDesignLocator.getElement()));
+    public boolean isGoodDesire() {
+        new WebDriverWait(getDriver(), 5).until(ExpectedConditions.visibilityOf(goodDesignLocator.getElement()));
         waitUntil(ExpectedConditions.visibilityOf(goodDesignLocator.getElement()), 5);
         return goodDesignLocator.isElementPresent(5);
     }

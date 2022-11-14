@@ -19,29 +19,21 @@ public class UpTab extends UpTabBase {
     private static final Logger LOGGER = Logger.getLogger(UpTab.class);
 
 
-@FindBy(xpath = "//div[@id='nav-progressive-greeting']")
+@FindBy(xpath = "//a[@class='nav-a nav-show-sign-in']")//browser
 private ExtendedWebElement signInBtn;
 
-    @FindBy(xpath = "//*[@id='nav-search-keywords']")
+    @FindBy(xpath = "//input[@class='nav-input nav-progressive-attribute']")//browser
     private ExtendedWebElement searchField;
 
- @FindBy(xpath = "//input[@nav-input nav-progressive-attribute']")
-    private ExtendedWebElement searchField1;
-
-    @FindBy(xpath = "//div[@class='a-box-inner a-padding-extra-large']")
-    private ExtendedWebElement signInBlock;
-
-    @FindBy(id = "nav-logo-sprites")
+    @FindBy(xpath = "//span[@class='nav-sprite nav-logo-base']")//browser
     private ExtendedWebElement homeBtn;
 
     @FindBy(id = "nav-logo-sprites")
     private ExtendedWebElement uiLoadedMarker;
 
-    @FindBy(xpath = "//form[@id='nav-search-form']//*[@type='submit']")
+    @FindBy(xpath = "//input[@type='submit']")//browser
     private ExtendedWebElement searchBtn;
 
-    @FindBy(xpath = "//*[@resource-id=\"outer-accordion-signin-signup-page\"]/android.view.View[1]")
-    private ExtendedWebElement headerSign;
 
     public UpTab(WebDriver driver) {
         super(driver);
@@ -58,7 +50,6 @@ private ExtendedWebElement signInBtn;
 
     @Override
     public void clickSearchField() {
-//        searchField.clickIfPresent();
         searchField.click();
     }
 

@@ -7,6 +7,7 @@ import com.solvd.carina.amazon.mobile.base.FilterResultPageBase;
 import com.solvd.carina.amazon.mobile.base.HomePageBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,39 +18,27 @@ public class FilterMenuPage extends FilterMenuPageBase {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-    //    @FindBy(xpath = "//i[@class='nav-sprite hmenu-arrow-more']")
-    @FindBy(xpath = "//div[@id=\"hmenu-content\"]/ul[1]/li[12]/a[1]/div")
-    private ExtendedWebElement seeAllBtn;  //for mobil
+    @FindBy(xpath = "//a[@class='hmenu-item hmenu-compressed-btn']/div")//browser
+    private ExtendedWebElement seeAllBtn;
 
-    @FindBy(xpath = "//div[text()='Smart Home']")
-    private ExtendedWebElement smartHomeBtn;
-
-    @FindBy(xpath = "//div[@id=\"hmenu-content\"]/ul[1]/ul/li[3]/a/div")
+    @FindBy(xpath = "//a[@class='hmenu-item'][@data-ref-tag='navm_em_1_1_1_9']/div")//browser
     private ExtendedWebElement amazonMusicBtn;
-    @FindBy(xpath = "//div[@id=\"hmenu-content\"]/ul[2]/li[2]/div")
+
+    @FindBy(xpath = "//div[text()='amazon music']")//browser
     private ExtendedWebElement amazonMusicTitle;
-    @FindBy(xpath = "//*[@href='/music/free?ref_=navm_em__dm_nav_nw_0_2_2_2']")
+
+    @FindBy(xpath = "//a[@href='/music/free?ref_=navm_em__dm_nav_nw_0_2_2_2']")//browser
     private ExtendedWebElement freeStreamingMusicBtn;
-    @FindBy(xpath = "//*[contains(@class,'color-black font_Sharp_Grotesk_Pan_Euro_Bold_20 mobilePortrait align-center')]")
+
+    @FindBy(xpath = "//h3[@class='color-black font_Sharp_Grotesk_Pan_Euro_Bold_20 mobilePortrait align-center']")//browser
     private ExtendedWebElement freeStreamingMusicTitle;
 
-
-    @FindBy(xpath = "//a[@class ='hmenu-item'][text()='Pet']")
-    private ExtendedWebElement petBtn;
-
-    //    @FindBy(xpath = "//div[@class ='nav-sprite hmenu-close-icon']")
-    @FindBy(xpath = "//a[@id=\"hmenu-close-menu\"]")
+    @FindBy(xpath = "//div[@class='nav-sprite hmenu-close-icon']")//browser
     private ExtendedWebElement closeFilterMenuBtn;
 
     //    @FindBy(xpath = "//*[@id='hmenu-content']") // the same locator but upper and wider (needed depends on page design)
     @FindBy(xpath = "//ul[@class='hmenu hmenu-visible']")
     private ExtendedWebElement filterBlock;
-
-    @FindBy(xpath = "//*[@id='hmenu-content']//following::div[contains(text(),'smart home')]")
-    private ExtendedWebElement smartHomeTitle;
-
-    @FindBy(xpath = "//*[text()='Smart Pet | Smart Home']")
-    private ExtendedWebElement titleSmartPet;
 
     public FilterMenuPage(WebDriver driver) {
         super(driver);
@@ -75,7 +64,7 @@ public class FilterMenuPage extends FilterMenuPageBase {
         pause(3);
         assertElementPresent(freeStreamingMusicBtn);
         freeStreamingMusicBtn.click();
-        waitForJSToLoad();
+        waitUntil(ExpectedConditions.visibilityOf(freeStreamingMusicTitle.getElement()), 5);
         return initPage(driver, FilterResultPageBase.class);
     }
 

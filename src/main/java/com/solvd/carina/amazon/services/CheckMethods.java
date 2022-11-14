@@ -36,7 +36,7 @@ public class CheckMethods {
         for (int i = 0; i < numElementsToCheck; i++) {
             boolean elOfWhatPresentInElOfWhere = false;
 
-            for (int j = 0; j < whereList.size(); j++) {
+            for (int j = 0; j < whatList.size()-1; j++) {
                 String a = whereList.get(i).toLowerCase(Locale.ROOT);
                 String signdisc = whatList.get(j);
                 if (!a.contains(signdisc)) {

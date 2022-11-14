@@ -15,14 +15,11 @@ public class SignInFormPage extends SignInFormPageBase {
 
     private static final Logger LOGGER = Logger.getLogger(SignInFormPage.class);
 
-    @FindBy(xpath = "//div[@id='outer-accordion-signin-signup-page']")
+    @FindBy(xpath = "//div[@id='outer-accordion-signin-signup-page']/h2")//browse
     private ExtendedWebElement header;
 
-    @FindBy(xpath = "//div[@id='nav-logo']")
+    @FindBy(xpath = "//span[@class='nav-sprite nav-logo-base']")//browse
     private ExtendedWebElement homeBtn;
-
-    @FindBy(xpath = "//span[@class='nav-sprite nav-logo-base']")  //for mobil
-    private ExtendedWebElement homeBtn1;
 
     private String titleName = "Welcome";
     private String textName = "Create an account";

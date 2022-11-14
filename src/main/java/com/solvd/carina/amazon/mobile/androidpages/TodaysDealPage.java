@@ -25,27 +25,11 @@ public class TodaysDealPage extends TodaysDealPageBase implements IMobileUtils {
     @FindBy(xpath = "//h1")
     private ExtendedWebElement header;
 
-//    //    @FindBy(xpath = "//*[@class='Grid-module__gridDisplayGrid_2X7cDTY7pjoTwwvSRQbt9Y']//div[contains(@class,'DealGridItem-module__withoutActionButton_2OI8DAanWNRCagYDL2iIqN')]")
-//    @FindBy(xpath = "//android.view.View[@resource-id='slot-15']//android.view.View")
-//    private List<ExtendedWebElement> discountGoods1;
-//    @FindBy(xpath = "//div[@id=\"slot-15\"]//a/div[1]/div")
-//    private List<ExtendedWebElement> discountGoods2;
-//    @FindBy(xpath = "(//div[@id=\"slot-15\"])[2]//div[1]/div/div/a/div/a/div[2]/div")
-//    private List<ExtendedWebElement> discountGoods3;
-//    @FindBy(xpath = "((//div[@id=\"slot-15\"])[2]/div/div/div[3]//a/div/div[2]/a/div[2]/div")
-//    private List<ExtendedWebElement> discountGoods4;
-    @FindBy(xpath = "//*[contains(@class,'DealCard')]")
+    @FindBy(xpath = "//div[@class='BadgeAutomated-module__badgeOneLineContainer_yYupgq1lKxb5h3bfDqA-B']/div[@class='BadgeAutomatedLabel-module__badgeAutomatedLabel_2Teem9LTaUlj6gBh5R45wd']")
     private List<ExtendedWebElement> discountGoods;
-
-    @FindBy(xpath = "//div[@aria-label='Watch now']")
-    private ExtendedWebElement watchNow;
-
-    @FindBy(xpath = "//div[@aria-label='Watch now']")
-    private ExtendedWebElement uiLoaderMarker;
 
     public TodaysDealPage(WebDriver driver) {
         super(driver);
-//        setUiLoadedMarker(uiLoaderMarker);
         setPageURL(Const.TODAYS_URL);
     }
 
@@ -65,7 +49,6 @@ public class TodaysDealPage extends TodaysDealPageBase implements IMobileUtils {
     @Override
     public List<String> goodsTitleDiscountsList() {
         swipeUpScreen();
-
         return discountGoods.stream()
                 .map(ExtendedWebElement::getText)
                 .collect(Collectors.toList());
@@ -84,7 +67,7 @@ public class TodaysDealPage extends TodaysDealPageBase implements IMobileUtils {
     @Override
     public boolean areGoodsHaveDiscount() {
         List<String> discGoods = goodsTitleDiscountsList();
-        List<String> discounts = new ArrayList<>(Arrays.asList("up", "%", "off", "under", "-"));
+        List<String> discounts = new ArrayList<>(Arrays.asList("up", "%", "off", "under", "Deal", "-"));
         boolean areTheseGoodsOnDiscounts = CheckMethods.isElementsPresentInList(discGoods, 4, discounts);
         LOGGER.info("Verifying that all goods have at least one feature of discount: " + areTheseGoodsOnDiscounts);
         return areTheseGoodsOnDiscounts;

@@ -17,7 +17,7 @@ public class ResultsPage extends ResultsPageBase {
     private static final Logger LOGGER = Logger.getLogger(ResultsPage.class);
 
 
-    @FindBy(xpath = "//div[@id=\"search\"]/span[1]/div//h2/span")
+    @FindBy(xpath = "//span[@class='a-size-small a-color-base a-text-normal']")//browser
     private List<ExtendedWebElement> goodsResult;
 
 
