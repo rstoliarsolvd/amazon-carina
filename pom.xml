@@ -16,7 +16,7 @@
 		<carina-core_version>7.4.26</carina-core_version>
 		<java.version>11</java.version>
 		<zebrunner-agent.version>1.7.4</zebrunner-agent.version>
-		<suite>helloWorld</suite>
+		<suite>parallel-testing</suite>
 	</properties>
 
 	<repositories>
