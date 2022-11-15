@@ -54,14 +54,13 @@ public class FilterMenuPage extends FilterMenuPageBase {
     public FilterMenuPageBase clickAmazonMusicBtn() {
         assertElementPresent(amazonMusicBtn);
         amazonMusicBtn.click();
-        waitForJSToLoad();
+        waitUntil(ExpectedConditions.invisibilityOf(amazonMusicBtn.getElement()),5);
         return initPage(driver, FilterMenuPageBase.class);
     }
 
     @Override
     public FilterResultPageBase clickFreeStreamingMusicBtn() {
-        waitForJSToLoad();
-        pause(3);
+        waitUntil(ExpectedConditions.visibilityOf(freeStreamingMusicBtn.getElement()),5);
         assertElementPresent(freeStreamingMusicBtn);
         freeStreamingMusicBtn.click();
         waitUntil(ExpectedConditions.visibilityOf(freeStreamingMusicTitle.getElement()), 5);
@@ -76,7 +75,7 @@ public class FilterMenuPage extends FilterMenuPageBase {
 
     @Override
     public boolean isAmazonMusicTitlePresent() {
-        waitForJSToLoad();
+        waitUntil(ExpectedConditions.visibilityOf(amazonMusicTitle.getElement()),5);
         boolean isSmartHomeTitleDisplayed = amazonMusicTitle.isElementPresent();
         LOGGER.info("Verifying 'Smart Home' Presence on title of page : " + isSmartHomeTitleDisplayed);
         return isSmartHomeTitleDisplayed;
@@ -84,10 +83,10 @@ public class FilterMenuPage extends FilterMenuPageBase {
 
     @Override
     public HomePageBase clickCloseBtn() {
-        waitForJSToLoad();
+        waitUntil(ExpectedConditions.visibilityOf(closeFilterMenuBtn.getElement()),5);
         closeFilterMenuBtn.click();
+        waitUntil(ExpectedConditions.invisibilityOf(closeFilterMenuBtn.getElement()),5);
         boolean isCloseFilterMenuBtnDisplayed = closeFilterMenuBtn.isElementPresent();
-        waitForJSToLoad();
         LOGGER.info("closeFilterMenuBtn disappeared after clicking on it - " + !isCloseFilterMenuBtnDisplayed);
         return initPage(driver, HomePageBase.class);
     }

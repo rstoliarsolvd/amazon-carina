@@ -19,22 +19,17 @@ public class HomePage extends HomePageBase {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-    @FindBy(xpath = "//div[@id='desktop-banner-stripe']")
-    private ExtendedWebElement desktopBannerStripe;
-
-//    @FindBy(xpath = "//div[@id='gw-card-layout']")    // for web
-    @FindBy(xpath = "//div[@id='gwm-Deck-cf']")   //for mobil
+    @FindBy(xpath = "//div[@class='gwm-dashboard-wrapper']") //browser
     private ExtendedWebElement desktopCardLayout;
 
-    @FindBy(xpath = "//*[@id='nav-main']")
+    @FindBy(css = "#nav-gwbar")//browser
     private ExtendedWebElement goodDesignLocator;
 
-    @FindBy(xpath = "//*[@id='nav-main']")
-    private ExtendedWebElement uiLoaderMarker;
+    @FindBy(xpath = "//a[@id='intlDeals']")//browse
+    private ExtendedWebElement todaysDealsLocator;
 
     public HomePage(WebDriver driver) {
         super(driver);
-//        setUiLoadedMarker(uiLoaderMarker);
         setPageURL(Configuration.get(Configuration.Parameter.URL));
     }
 
@@ -47,21 +42,11 @@ public class HomePage extends HomePageBase {
         LOGGER.info("Verifying Home-page is opened: " + isHomePageOpened);
         return isHomePageOpened;
     }
-//
-//    @Override
-//    public ExtendedWebElement getHomePageWebElement() {
-//        return desktopCardLayout;
-//    }
 
     @Override
-    public boolean isGoodDesire(){
-        new WebDriverWait(getDriver(),5).until(ExpectedConditions.visibilityOf(goodDesignLocator.getElement()));
+    public boolean isGoodDesire() {
+        new WebDriverWait(getDriver(), 5).until(ExpectedConditions.visibilityOf(goodDesignLocator.getElement()));
         waitUntil(ExpectedConditions.visibilityOf(goodDesignLocator.getElement()), 5);
-        try {
-            wait(500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         return goodDesignLocator.isElementPresent(5);
     }
 

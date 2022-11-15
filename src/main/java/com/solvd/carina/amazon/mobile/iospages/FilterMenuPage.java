@@ -7,6 +7,7 @@ import com.solvd.carina.amazon.mobile.base.FilterResultPageBase;
 import com.solvd.carina.amazon.mobile.base.HomePageBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,51 +18,55 @@ public class FilterMenuPage extends FilterMenuPageBase {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-    @FindBy(xpath = "//i[@class='nav-sprite hmenu-arrow-more']")
-    private ExtendedWebElement seeAllBtn;  //for mobil
+    @FindBy(xpath = "//a[@class='hmenu-item hmenu-compressed-btn']/div")//browser
+    private ExtendedWebElement seeAllBtn;
 
-    @FindBy(xpath = "//div[text()='Smart Home']")
-    private ExtendedWebElement smartHomeBtn;
+    @FindBy(xpath = "//a[@class='hmenu-item'][@data-ref-tag='navm_em_1_1_1_9']/div")//browser
+    private ExtendedWebElement amazonMusicBtn;
 
-    @FindBy(xpath = "//a[@class ='hmenu-item'][text()='Pet']")
-    private ExtendedWebElement petBtn;
+    @FindBy(xpath = "//div[text()='amazon music']")//browser
+    private ExtendedWebElement amazonMusicTitle;
 
-    @FindBy(xpath = "//div[@class ='nav-sprite hmenu-close-icon']")
+    @FindBy(xpath = "//a[@href='/music/free?ref_=navm_em__dm_nav_nw_0_2_2_2']")//browser
+    private ExtendedWebElement freeStreamingMusicBtn;
+
+//    @FindBy(xpath = "//h3[@class='color-black font_Sharp_Grotesk_Pan_Euro_Bold_20 mobilePortrait align-center']")//browser
+//    @FindBy(xpath = "//div[@class='padding-left-xmini padding-right-xmini padding-top-xmini padding-bottom-xmini flex-container flex-align-items-stretch flex-align-content-flex-start flex-full-width music ember']")
+    @FindBy(xpath = "//div[contains(@class,'padding-left-xmini padding-right-xmini')]")
+    private ExtendedWebElement freeStreamingMusicTitle;
+
+    @FindBy(xpath = "//div[@class='nav-sprite hmenu-close-icon']")//browser
     private ExtendedWebElement closeFilterMenuBtn;
 
     //    @FindBy(xpath = "//*[@id='hmenu-content']") // the same locator but upper and wider (needed depends on page design)
     @FindBy(xpath = "//ul[@class='hmenu hmenu-visible']")
     private ExtendedWebElement filterBlock;
 
-    @FindBy(xpath = "//*[@id='hmenu-content']//following::div[contains(text(),'smart home')]")
-    private ExtendedWebElement smartHomeTitle;
-
-    @FindBy(xpath = "//*[text()='Smart Pet | Smart Home']")
-    private ExtendedWebElement titleSmartPet;
-
     public FilterMenuPage(WebDriver driver) {
         super(driver);
     }
 
     @Override
-    public FilterMenuPageBase clickSeeAllBtn(){
-        return null;
+    public FilterMenuPageBase clickSeeAllBtn() {
+        seeAllBtn.click();
+        return initPage(driver, FilterMenuPageBase.class);
     }
 
     @Override
     public FilterMenuPageBase clickAmazonMusicBtn() {
-        assertElementPresent(smartHomeBtn);
-        smartHomeBtn.click();
-        waitForJSToLoad();
+        assertElementPresent(amazonMusicBtn);
+        amazonMusicBtn.click();
+        waitUntil(ExpectedConditions.invisibilityOf(amazonMusicBtn.getElement()),5);
         return initPage(driver, FilterMenuPageBase.class);
     }
 
     @Override
     public FilterResultPageBase clickFreeStreamingMusicBtn() {
-        assertElementPresent(petBtn);
-        petBtn.click();
-        waitForJSToLoad();
-        return initPage(driver, FilterResultPage.class);
+        waitUntil(ExpectedConditions.visibilityOf(freeStreamingMusicBtn.getElement()),5);
+        assertElementPresent(freeStreamingMusicBtn);
+        freeStreamingMusicBtn.click();
+        waitUntil(ExpectedConditions.visibilityOf(freeStreamingMusicTitle.getElement()), 5);
+        return initPage(driver, FilterResultPageBase.class);
     }
 
     @Override
@@ -72,20 +77,20 @@ public class FilterMenuPage extends FilterMenuPageBase {
 
     @Override
     public boolean isAmazonMusicTitlePresent() {
-        waitForJSToLoad();
-        boolean isSmartHomeTitleDisplayed = smartHomeTitle.isElementPresent();
+        waitUntil(ExpectedConditions.visibilityOf(amazonMusicTitle.getElement()),5);
+        boolean isSmartHomeTitleDisplayed = amazonMusicTitle.isElementPresent();
         LOGGER.info("Verifying 'Smart Home' Presence on title of page : " + isSmartHomeTitleDisplayed);
         return isSmartHomeTitleDisplayed;
     }
 
     @Override
     public HomePageBase clickCloseBtn() {
-        waitForJSToLoad();
+        waitUntil(ExpectedConditions.visibilityOf(closeFilterMenuBtn.getElement()),5);
         closeFilterMenuBtn.click();
+        waitUntil(ExpectedConditions.invisibilityOf(closeFilterMenuBtn.getElement()),5);
         boolean isCloseFilterMenuBtnDisplayed = closeFilterMenuBtn.isElementPresent();
-        waitForJSToLoad();
         LOGGER.info("closeFilterMenuBtn disappeared after clicking on it - " + !isCloseFilterMenuBtnDisplayed);
-        return initPage(driver, HomePage.class);
+        return initPage(driver, HomePageBase.class);
     }
 
     @Override

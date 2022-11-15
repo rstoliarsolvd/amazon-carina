@@ -6,43 +6,36 @@ import com.solvd.carina.amazon.mobile.base.HomePageBase;
 import com.solvd.carina.amazon.mobile.base.ResultsPageBase;
 import com.solvd.carina.amazon.mobile.base.SignInFormPageBase;
 import com.solvd.carina.amazon.mobile.base.UpTabBase;
-import org.apache.log4j.Logger;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.lang.invoke.MethodHandles;
 
 @DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = UpTabBase.class)
 public class UpTab extends UpTabBase {
 
-    private static final Logger LOGGER = Logger.getLogger(UpTab.class);
 
-//    @FindBy(id = "nav-link-accountList-nav-line-1")
-    @FindBy(xpath = "//android.view.View[@content-desc=\"Sign in ›\"]")
-//    @FindBy(xpath = "//android.view.View[@content-desc=\"Sign in ›\"]/android.widget.TextView")
-//    @FindBy(xpath = "//div[@id=\"nav-progressive-greeting\"]")
+    private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+
+    @FindBy(xpath = "//a[@class='nav-a nav-show-sign-in']")//browser
     private ExtendedWebElement signInBtn;
 
-//    @FindBy(xpath = "//*[@id='twotabsearchtextbox']")
-    @FindBy(xpath = "//android.view.View[@content-desc=\"Clear search keywords\"]")
+    @FindBy(xpath = "//input[@class='nav-input nav-progressive-attribute']")//browser
     private ExtendedWebElement searchField;
 
-    @FindBy(xpath = "//div[@class='a-box-inner a-padding-extra-large']")
-    private ExtendedWebElement signInBlock;
-
-//    @FindBy(id = "nav-logo-sprites")
-    @FindBy(id = "nav-logo-sprites")
+    @FindBy(xpath = "//span[@class='nav-sprite nav-logo-base']")//browser
     private ExtendedWebElement homeBtn;
 
     @FindBy(id = "nav-logo-sprites")
     private ExtendedWebElement uiLoadedMarker;
 
-//    @FindBy(xpath = "//input[@id='nav-search-submit-button']")
-    @FindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.widget.FrameLayout[2]/android.webkit.WebView/android.view.View/android.view.View[1]/android.view.View/android.view.View[2]/android.view.View[2]/android.view.View/android.widget.Button")
+    @FindBy(xpath = "//input[@type='submit']")//browser
     private ExtendedWebElement searchBtn;
 
-    @FindBy(xpath = "//*[@resource-id=\"outer-accordion-signin-signup-page\"]/android.view.View[1]")
-    private ExtendedWebElement headerSign;
 
     public UpTab(WebDriver driver) {
         super(driver);
@@ -51,15 +44,15 @@ public class UpTab extends UpTabBase {
 
     @Override
     public SignInFormPageBase clickSignInBtn() {
-        signInBtn.clickIfPresent();
+
+        signInBtn.click();
         waitForJSToLoad();
-        waitUntil(ExpectedConditions.visibilityOf(headerSign.getElement()),5);
         return initPage(driver, SignInFormPageBase.class);
     }
 
     @Override
     public void clickSearchField() {
-        searchField.clickIfPresent();
+        searchField.click();
     }
 
     @Override
@@ -80,7 +73,6 @@ public class UpTab extends UpTabBase {
 //        searchBtn.click();
 //        return initPage(driver, ResultsPage.class);
 //    }
-
     @Override
     public ResultsPageBase findItem(String searchItem) {
         clickSearchField();
@@ -90,7 +82,7 @@ public class UpTab extends UpTabBase {
     @Override
     public HomePageBase clickHomeBtn() {
         homeBtn.click();
-        HomePageBase homePage = initPage(driver, HomePage.class);
+        HomePageBase homePage = initPage(driver, HomePageBase.class);
         waitForJSToLoad();
         LOGGER.info("HomePage is opened : " + homePage.isHomePageOpen());
         return initPage(HomePageBase.class);
