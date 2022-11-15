@@ -6,21 +6,21 @@ import com.solvd.carina.amazon.mobile.base.HomePageBase;
 import com.solvd.carina.amazon.mobile.base.ResultsPageBase;
 import com.solvd.carina.amazon.mobile.base.SignInFormPageBase;
 import com.solvd.carina.amazon.mobile.base.UpTabBase;
-import org.apache.log4j.Logger;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.lang.invoke.MethodHandles;
 
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = UpTabBase.class)
 public class UpTab extends UpTabBase {
 
-    private static final Logger LOGGER = Logger.getLogger(UpTab.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-
-@FindBy(xpath = "//a[@class='nav-a nav-show-sign-in']")//browser
-private ExtendedWebElement signInBtn;
+    @FindBy(xpath = "//a[@class='nav-a nav-show-sign-in']")//browser
+    private ExtendedWebElement signInBtn;
 
     @FindBy(xpath = "//input[@class='nav-input nav-progressive-attribute']")//browser
     private ExtendedWebElement searchField;
@@ -71,7 +71,6 @@ private ExtendedWebElement signInBtn;
 //        searchBtn.click();
 //        return initPage(driver, ResultsPage.class);
 //    }
-
     @Override
     public ResultsPageBase findItem(String searchItem) {
         clickSearchField();
@@ -81,7 +80,7 @@ private ExtendedWebElement signInBtn;
     @Override
     public HomePageBase clickHomeBtn() {
         homeBtn.click();
-        HomePageBase homePage = initPage(driver,HomePageBase.class);
+        HomePageBase homePage = initPage(driver, HomePageBase.class);
         waitForJSToLoad();
         LOGGER.info("HomePage is opened : " + homePage.isHomePageOpen());
         return initPage(HomePageBase.class);

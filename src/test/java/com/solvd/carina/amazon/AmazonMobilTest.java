@@ -5,6 +5,7 @@ import com.qaprosoft.carina.core.foundation.utils.tag.Priority;
 import com.qaprosoft.carina.core.foundation.utils.tag.TestPriority;
 import com.solvd.carina.amazon.mobile.base.*;
 import com.solvd.carina.amazon.services.NavigationService;
+import com.solvd.carina.amazon.services.ServiceForStartTestOnIos;
 import com.solvd.carina.amazon.utils.RetryTestRunAttempts;
 import com.zebrunner.agent.core.annotation.TestLabel;
 import org.apache.log4j.Logger;
@@ -41,11 +42,10 @@ public class AmazonMobilTest extends AbstractMobilTest {
 
         WebDriver driver = getDriver();
         /**
-         * next two raws needed for ios only
+         * next two raws needed for ios only (not this time)
+         * ServiceForStartTestOnIos sfs = new ServiceForStartTestOnIos();
+         *         sfs.launchApp();
          */
-//        ServiceForStartTestOnIos sfs = new ServiceForStartTestOnIos();
-//        sfs.launchApp();
-
 
         //Output info about thread number and browser name
         LOGGER.info("verifySignInFormAppearedTest Thread.currentThread().getId() = " + Thread.currentThread().getId());
@@ -79,8 +79,6 @@ public class AmazonMobilTest extends AbstractMobilTest {
     public void verifySearchFieldAndHomeBtn(String searchItem) throws Exception {
 
         //Driver initialisation (default)
-//        String browser = Configuration.getBrowser();
-//        AbstractTest.setupDriver(browser);
         WebDriver driver = getDriver();
 
         //Output info about thread number and browser name
@@ -90,7 +88,7 @@ public class AmazonMobilTest extends AbstractMobilTest {
         //get driver and verify good page design. If not - then refresh
         HomePageBase homePage = initPage(driver, HomePageBase.class);
         homePage.open();
-//        refreshPageIfWrongDesign(driver, homePage.isGoodDesire());
+        refreshPageIfWrongDesign(driver, homePage.isGoodDesire());
 
         //Input searched good and verify result for it
         UpTabBase upTab = initPage(driver, UpTabBase.class);    //for mobil
@@ -114,8 +112,6 @@ public class AmazonMobilTest extends AbstractMobilTest {
     public void verifyTodayDealsOption() throws Exception {
 
         //Driver initialisation (default)
-//        String browser = Configuration.get(Configuration.Parameter.BROWSER);
-//        AbstractTest.setupDriver(browser);
         WebDriver driver = getDriver();
 
         //Output info about thread number and browser name
@@ -131,16 +127,12 @@ public class AmazonMobilTest extends AbstractMobilTest {
         //Verify LocationAlert. If it is presented, then close it.
         LocationAlertBase lAlert = initPage(driver, LocationAlertBase.class);  //for mobil
 
-//        lAlert.verifyAlert();
-//        Assert.assertTrue(lAlert.isPageOpened());
-
         //Press TodaysDeals and verify all goods have discounts on opened page
         MenuTabBase menuTab = initPage(driver, MenuTabBase.class);  //for mobil
         Assert.assertTrue(menuTab.isPageOpened());
 
         TodaysDealPageBase todaysDealPage = menuTab.clickTodaysDealsBtn();
         todaysDealPage.open();
-//        Assert.assertTrue(todaysDealPage.isPageOpened());
 
         Assert.assertTrue(todaysDealPage.isPageOpened(), "No Today's Deals page is open");
         Assert.assertTrue(todaysDealPage.areGoodsHaveDiscount(), "Not All goods have discounts");
@@ -164,13 +156,11 @@ public class AmazonMobilTest extends AbstractMobilTest {
     public void verifyFilterTest() throws Exception {
 
         //Driver initialisation
-
         WebDriver driver = getDriver();
+
         //Output info about thread number and browser name
         LOGGER.info("verifyFilterTest Thread.currentThread().getId() = " + Thread.currentThread().getId());
         LOGGER.info("This test is running on browser - " + ((HasCapabilities) driver).getCapabilities().getBrowserName());
-
-        String pet = "pet";
 
         //get driver and verify good page design. If not - then refresh
         HomePageBase homePage = initPage(driver, HomePageBase.class);
@@ -184,14 +174,11 @@ public class AmazonMobilTest extends AbstractMobilTest {
         //Choose position of first level filter menu and verify its name present in title on appeared second level filter menu(or result page)
         filterMenuPage = filterMenuPage.clickSeeAllBtn();
         filterMenuPage = filterMenuPage.clickAmazonMusicBtn();
-//        Assert.assertTrue(filterMenuPage.isFMPageOpen(), "Filter menu page is not open");
         Assert.assertTrue(filterMenuPage.isAmazonMusicTitlePresent(), "Filter menu page do not contain the needed title of menu block");
 
         //Choose position of second level filter menu and verify its name present in title on appeared result page
         FilterResultPageBase filterResultPage = filterMenuPage.clickFreeStreamingMusicBtn();
-
         Assert.assertTrue(filterResultPage.isTitleOnFilterResultPageWithFreeStreamingMusic(), " No 'Free streaming' title is displayed");
-//        Assert.assertTrue(filterResultPage.areAllGoodsTitleContainsSearchItem(pet), "No 'Pet' in title on filter result page present");
 
         //back to home page
         UpTabBase upTab = initPage(driver, UpTabBase.class);
@@ -200,20 +187,17 @@ public class AmazonMobilTest extends AbstractMobilTest {
 
     //    @TestRailCases(testCasesId = "115", suiteId = "N1")
     @Test(
-//            dataProvider = "browser",
             description = "Verify that after press 'Close'-button on choosing filter options, all filter options are closed and Home-page is open",
             retryAnalyzer = RetryTestRunAttempts.class)
     @MethodOwner(owner = "rstoliar", platform = "web")
     @TestPriority(Priority.P1)
     @TestLabel(name = "feature", value = {"web", "regression"})
 
-//    public void verifyFilterMenuCloseBtn(String browser) throws Exception {
     public void verifyFilterMenuCloseBtn() throws Exception {
 
-        //Driver initialisation (all from dataProvider)
-//        AbstractTest.setupDriver(browser);
-
+        //Driver initialisation
         WebDriver driver = getDriver();
+
         //Output info about thread number and browser name
         LOGGER.info("verifyFilterMenuCloseBtn Thread.currentThread().getId() = " + Thread.currentThread().getId());
         LOGGER.info("This test is running on browser - " + ((HasCapabilities) driver).getCapabilities().getBrowserName());

@@ -28,7 +28,7 @@ public class CheckMethods {
      */
     public static boolean isElementsPresentInList(List<String> whereList, int numElementsToCheck, List<String> whatList) {
 
-        if(whereList.isEmpty()) {
+        if (whereList.isEmpty()) {
             LOGGER.error("WHERE LIST IS EMPTY!))))");
             return false;
         }
@@ -36,7 +36,7 @@ public class CheckMethods {
         for (int i = 0; i < numElementsToCheck; i++) {
             boolean elOfWhatPresentInElOfWhere = false;
 
-            for (int j = 0; j < whatList.size()-1; j++) {
+            for (int j = 0; j < whatList.size() - 1; j++) {
                 String a = whereList.get(i).toLowerCase(Locale.ROOT);
                 String signdisc = whatList.get(j);
                 if (!a.contains(signdisc)) {
@@ -80,10 +80,15 @@ public class CheckMethods {
      */
     public static boolean areAllElementsContainAllElements(List<String> whereList, String[] whatArr) {
         boolean whereListContainWhatArrEl = false;
-        for (String s : whereList) {
-            for (int i = 0; i < whatArr.length; i++) {
+//        for (String s : whereList) {
+//            for (int i = 0; i < whatArr.length; i++) {
+//                if (s.toLowerCase(Locale.ROOT).contains(whatArr[i].toLowerCase(Locale.ROOT))) {
 
-                if (s.toLowerCase(Locale.ROOT).contains(whatArr[i].toLowerCase(Locale.ROOT))) {
+        for (int s = 0; s < 4; s++) {
+            for (int i = 0; i < whatArr.length; i++) {
+                if (whereList.get(s).toLowerCase(Locale.ROOT).contains(whatArr[i].toLowerCase(Locale.ROOT))) {
+
+
                     whereListContainWhatArrEl = true;
                     continue;
                 } else {

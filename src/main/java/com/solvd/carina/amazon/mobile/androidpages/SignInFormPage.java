@@ -5,15 +5,19 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.solvd.carina.amazon.constants.Const;
 import com.solvd.carina.amazon.mobile.base.HomePageBase;
 import com.solvd.carina.amazon.mobile.base.SignInFormPageBase;
-import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.lang.invoke.MethodHandles;
 
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = SignInFormPageBase.class)
 public class SignInFormPage extends SignInFormPageBase {
 
-    private static final Logger LOGGER = Logger.getLogger(SignInFormPage.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+
 
     @FindBy(xpath = "//div[@id='outer-accordion-signin-signup-page']/h2")//browse
     private ExtendedWebElement header;

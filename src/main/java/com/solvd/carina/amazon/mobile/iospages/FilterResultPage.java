@@ -16,8 +16,9 @@ public class FilterResultPage extends FilterResultPageBase {
 
     public static final Logger LOGGER = Logger.getLogger(FilterResultPage.class);
 
-    @FindBy(xpath = "//*[text()='Smart Pet | Smart Home']")
-    private ExtendedWebElement titleSmartPet;
+    @FindBy(xpath = "//div[@class='padding-top-xlarge padding-bottom-mini flex-container flex-align-items-stretch flex-align-content-flex-start flex-full-width music ember']")//browser
+    private ExtendedWebElement freeStreamingMusicTitle;
+
 
     @FindBy(xpath = "//span[@class='a-truncate-cut']")
     private List<ExtendedWebElement> goodsOfFilter;
@@ -28,9 +29,9 @@ public class FilterResultPage extends FilterResultPageBase {
 
     @Override
     public boolean isTitleOnFilterResultPageWithFreeStreamingMusic() {
-        boolean isTitleSmartPetDisplayed = titleSmartPet.isPresent();
-        LOGGER.info("Verifying if title with 'Smart Home' and 'Pet' Present. : " + isTitleSmartPetDisplayed);
-        return isTitleSmartPetDisplayed;
+        boolean isTitleFreeStreamingDisplayed = freeStreamingMusicTitle.isElementPresent();
+        LOGGER.info("Verifying if title with 'Free Streaming music' Present. : " + isTitleFreeStreamingDisplayed);
+        return isTitleFreeStreamingDisplayed;
     }
 
     @Override

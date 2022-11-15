@@ -6,11 +6,13 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.solvd.carina.amazon.constants.Const;
 import com.solvd.carina.amazon.mobile.base.TodaysDealPageBase;
 import com.solvd.carina.amazon.services.CheckMethods;
-import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -19,7 +21,8 @@ import java.util.stream.Collectors;
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = TodaysDealPageBase.class)
 public class TodaysDealPage extends TodaysDealPageBase implements IMobileUtils {
 
-    private static final Logger LOGGER = Logger.getLogger(TodaysDealPage.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+
     public static final String LOCATOR_GOODS_DISC = "//*[@class='Grid-module__gridDisplayGrid_2X7cDTY7pjoTwwvSRQbt9Y']//div[contains(@class,'DealGridItem-module__withoutActionButton_2OI8DAanWNRCagYDL2iIqN')]";
 
     @FindBy(xpath = "//h1")
